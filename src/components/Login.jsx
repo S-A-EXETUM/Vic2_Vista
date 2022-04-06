@@ -32,8 +32,8 @@ const Login = () => {
   }
 
   return (
-    <div className="pt-10">
-        <div className='flex justify-evenly grid-cols-2'>
+    <div className="pt-5">
+        <div className='row container justify-content-evenly mt-5 pt-5'>
         {/* Formulario de registro */}
         <Registrar registro={registro} setEmail={setEmail} setPass={setPass}/>
         {/* Formulario de inicio de sesión */}

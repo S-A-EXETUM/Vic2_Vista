@@ -17,43 +17,43 @@ const Menu = () => {
         }
     });
   },[]);
+  const cerrarSesion = () =>{
+    user.signOut();
+    setUsuario(null);
+    console.log('Usuario Desconectado');
+}
   // const [sidebar, setSidebar] = useState(true);
   // const showSidebar = () => setSidebar(!sidebar);
   return (  
     <>
-        <IconContext.Provider value={{ className: "nav-icon"}}>
-        {/* <div className='navbar'>
-          <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
-        </div> */}
-        <div className='nav-menu'>
-          <ul className='nav-menu-items'>
-            {/* <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
-                <AiIcons.AiOutlineClose />
-              </Link>
-            </li> */}
-            {Menucontent.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    {item.icon}
-                    <span>{item.title}</span>
-                  </Link>
-                  
-                </li>
-              );
-            })}
-            
-            
-            
-            
-          </ul>
-          <button className="">Iniciar Sesión</button>
-            
+    <div>
+      <IconContext.Provider value={{ "color": "white"}}>
+        <div className='menu-bootstrap container-cristal'>
+          <div >
+            <img className='m-5 img-thumbnail w-50 rounded-circle' src='https://cdn.domestika.org/c_limit,dpr_1.0,f_auto,q_auto,w_610/v1513615213/content-items/002/192/266/08.randy-lewis-fotografias-surrealistas-original.jpg?1513615213' alt='logo'/>
+          </div>
+          <div>
+            <ul className='nav-menu-items' >
+              {Menucontent.map((item, index) => {
+                return (
+                  <li key={index} className={item.cName}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>    
+          <div>
+            <button onClick={cerrarSesion} className="btn btn-danger ms-4">
+                <span>Cerrar sesion</span>
+            </button>
+          </div>
         </div>
       </IconContext.Provider>
+    </div>  
     </>
   );
 }

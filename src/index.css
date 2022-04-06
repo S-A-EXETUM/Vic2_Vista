@@ -1,3 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* "backgroundImage": `url(${urlImg})`,
+    "backgroundRepeat": "no-repeat",  
+    "height": "100%", 
+    "backgroundSize": "cover",
+    "backgroundAttachment": "fixed"}}>
+    <h1>Hola</h1> */
+
+.background-image-blue{
+    background-image: url("https://img.freepik.com/vector-gratis/fondo-nube-turquesa_91008-163.jpg");
+    background-repeat: no-repeat;
+    /* height: 100%;
+    width: 100%; */
+    background-size: cover;
+    background-attachment: fixed;
+}

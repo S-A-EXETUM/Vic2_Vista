@@ -12,12 +12,11 @@ import Menu from './components/Menu';
 function App() {
   return (
     <Router>
-      <div className='flex flex-wrap'>
-        {/*<div className='flex flex-wrap w-full'>*/}
-        <div className='flex'>
+      <div className='row' style={{"padding": "0", "margin": "0"}}>
+        <div className='col-2' style={{"padding": "0"}}>
           <Menu/>
         </div>
-        <div className='flex-1'>
+        <div className='col' style={{"padding": "0"}}>
           <Routes>
             <Route path='/' element={<Inicio/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
