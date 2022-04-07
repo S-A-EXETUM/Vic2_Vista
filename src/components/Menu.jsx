@@ -47,9 +47,20 @@ const Menu = () => {
             </ul>
           </div>    
           <div>
-            <button onClick={cerrarSesion} className="btn btn-danger ms-4">
-                <span>Cerrar sesion</span>
-            </button>
+            {
+              !usuario ?
+              (
+                <span></span>
+              )  
+              :
+              (
+                <button onClick={cerrarSesion} className="btn btn-danger ms-4">
+                  <span>Cerrar sesion</span>
+                </button>
+                
+              )
+            }
+            
           </div>
         </div>
       </IconContext.Provider>

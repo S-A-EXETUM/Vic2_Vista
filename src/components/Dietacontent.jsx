@@ -8,25 +8,25 @@ import * as BoxIcons from 'react-icons/bi';
 export const Dietacontent = [
     {
         title: 'Para Ectomorfo',
-        path: '/dieta-ectomorfo',
+        path: '/dieta/ectomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Para Endomorfo',
-        path: '/dieta-endomorfo',
+        path: '/dieta/endomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Para Mesomorfo',
-        path: '/dieta-mesomorfo',
+        path: '/dieta/mesomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Para definir',
-        path: '/dieta-muscular',
+        path: '/dieta/muscular',
         icon: <GiIcons.GiMeat></GiIcons.GiMeat>,
         cName: 'nav-text-dieta'
     },

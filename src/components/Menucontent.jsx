@@ -13,13 +13,6 @@ export const Menucontent = [
         cName: 'nav-text'
     },
     {
-        title: 'Usuarios',
-        path: '/login',
-        icon: <BoxIcons.BiUserCircle></BoxIcons.BiUserCircle>,
-        cName: 'nav-text'
-        
-    },
-    {
         title: 'Entrenamiento',
         path: '/entrenamiento',
         icon: <GiIcons.GiWeightLiftingUp></GiIcons.GiWeightLiftingUp>,
@@ -33,9 +26,9 @@ export const Menucontent = [
         cName: 'nav-text'
     },
     {
-        title: 'Gastos',
-        path: '/gastos',
-        icon: <BsIcons.BsCashCoin></BsIcons.BsCashCoin>,
+        title: 'Cuenta',
+        path: '/cuenta',
+        icon: <BoxIcons.BiUserCircle></BoxIcons.BiUserCircle>,
         cName: 'nav-text'
     }
 ]

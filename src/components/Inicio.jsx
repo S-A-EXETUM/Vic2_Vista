@@ -1,10 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 //import imagen from '../../public/verde.jpg'
 
 //const urlImg = "https://img.freepik.com/vector-gratis/fondo-nube-turquesa_91008-163.jpg"
 const Inicio = () => {
+  const navegacion = useNavigate();
+  const redirectLogin = () =>{
+    navegacion('/login');
+  }
   return (
-    <>
+    <div className='mt-2 contenedor'>
+    {/*  <section class="ps-3 pe-5">
+            <p class="h6"><strong>Descripción</strong></p>
+            <div class="contenedor ps-2" id="desc-vista" style="border: solid #cecece .1px;border-radius: 2px; max-height: 200px; width: auto;">
+              <p class="text-start">Aquí irá la descripción de su publicación</p>
+            </div>
+          </section> */}
       <div className='row p-5' style={{"margin": "0"}}>
         <div className='col-6'>
           <div className='card shadow'>
@@ -15,7 +26,7 @@ const Inicio = () => {
         </div>
         <div className='col'>
           <div className='text-center'>
-            <button className='btn btn-outline-light fs-4 fst-italic fw-bold mt-5'>Inicie Sesión o Registrese Aquí</button>
+            <button onClick={redirectLogin} className='btn btn-outline-light fs-4 fst-italic fw-bold mt-5'>Inicie Sesión o Registrese Aquí</button>
           </div>
         </div>
       </div>
@@ -43,7 +54,7 @@ const Inicio = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

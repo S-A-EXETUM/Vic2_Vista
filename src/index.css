@@ -13,3 +13,19 @@
     background-size: cover;
     background-attachment: fixed;
 }
+
+.contenedor {
+	width: auto;
+	height: 100vh;
+	/* background: #fff; */
+    position: fixed;
+	overflow: auto;
+	border-radius: 4px;
+}
+.contenedor::-webkit-scrollbar{
+    width: 5px;
+}
+.contenedor::-webkit-scrollbar-thumb {
+	background: #22577E;
+	border-radius: 5px;
+}
