@@ -18,10 +18,10 @@ function App() {
   return (
     <Router>
       <div className='row' style={{"padding": "0", "margin": "0"}}>
-        <div className='col-2' style={{"padding": "0"}}>
+        <div className='col-lg-2 col-md-6 col-12' style={{"padding": "0"}}>
           <Menu/>
         </div>
-        <div className='col' style={{"padding": "0"}}>
+        <div className='col-lg col-md col-12' style={{"padding": "0"}}>
           <Routes>
             <Route path='/' element={<Inicio/>}></Route>
             <Route path='/login' element={<Login/>}></Route>
