@@ -1,9 +1,9 @@
 import React from 'react';
 import { EnCreacion } from '../EnCreacion';
-const Pecho = () => {
+const Hiit = () => {
   return (
-    <EnCreacion nombre="Pecho"></EnCreacion>
+    <EnCreacion nombre="Hiit"></EnCreacion>
   )
 }
 
-export default Pecho;
+export default Hiit;

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Registrar = ({setEmail, setPass, registro}) => {
     return(
-        <div className="col-4">
+        <div className="col-12 col-lg-4 col-md-6">
             <div className="card shadow">
                 <div className="card-body">
                     <form>
@@ -21,6 +21,7 @@ const Registrar = ({setEmail, setPass, registro}) => {
                                     className="form-control" 
                                     id="register-email" 
                                     type="email" 
+                                    required={true}
                                     placeholder="Correo"
                                 />
                             </div>
@@ -37,7 +38,9 @@ const Registrar = ({setEmail, setPass, registro}) => {
                                     className="form-control mb-4" 
                                     id="register-password" 
                                     type="password" 
+                                    required={true}
                                     placeholder="******************"
+                                    autoComplete=''
                                 />
                             </div>
                         </div>

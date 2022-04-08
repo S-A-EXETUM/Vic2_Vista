@@ -13,8 +13,8 @@ export const Menucontent = [
         cName: 'nav-text'
     },
     {
-        title: 'Entrenamiento',
-        path: '/entrenamiento',
+        title: 'Rutinas',
+        path: '/rutinas',
         icon: <GiIcons.GiWeightLiftingUp></GiIcons.GiWeightLiftingUp>,
         cName: 'nav-text'
         
