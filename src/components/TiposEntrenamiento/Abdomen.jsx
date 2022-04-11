@@ -1,8 +1,8 @@
 import React from 'react';
-
+import { EnCreacion } from '../EnCreacion';
 const Abdomen = () => {
   return (
-    <div>Abdomen</div>
+    <EnCreacion nombre="Abdomen"></EnCreacion>
   )
 }
 

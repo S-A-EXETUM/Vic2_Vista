@@ -8,31 +8,31 @@ import * as BoxIcons from 'react-icons/bi';
 export const entContentDef = [
     {
         title: 'Brazos',
-        path: '/entrenamiento/brazos',
+        path: '/rutinas/brazos',
         icon: <GiIcons.GiBiceps></GiIcons.GiBiceps>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Pecho',
-        path: '/entrenamiento/pecho',
+        path: '/rutinas/pecho',
         icon: <GiIcons.GiMuscularTorso></GiIcons.GiMuscularTorso>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Abdomen',
-        path: '/entrenamiento/abdomen',
+        path: '/rutinas/abdomen',
         icon: <GiIcons.GiMuscularTorso></GiIcons.GiMuscularTorso>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Piernas',
-        path: '/entrenamiento/piernas',
+        path: '/rutinas/piernas',
         icon: <GiIcons.GiLeg></GiIcons.GiLeg>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Espalda',
-        path: '/entrenamiento/espalda',
+        path: '/rutinas/espalda',
         icon: <GiIcons.GiShoulderArmor></GiIcons.GiShoulderArmor>,
         cName: 'nav-text-dieta'
     },
@@ -41,19 +41,19 @@ export const entContentDef = [
 export const entContentAde = [
     {
         title: 'Cardio',
-        path: '/entrenamiento/cardio',
+        path: '/rutinas/cardio',
         icon: <GiIcons.GiJumpingRope></GiIcons.GiJumpingRope>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Hiit',
-        path: '/entrenamiento/hiit',
+        path: '/rutinas/hiit',
         icon: <FaIcons.FaRunning></FaIcons.FaRunning>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Crossfit',
-        path: '/entrenamiento/crossfit',
+        path: '/rutinas/crossfit',
         icon: <GiIcons.GiJumpAcross></GiIcons.GiJumpAcross>,
         cName: 'nav-text-dieta'
     }

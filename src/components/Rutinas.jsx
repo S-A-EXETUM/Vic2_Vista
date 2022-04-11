@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {entContentDef, entContentAde} from './Entcontent';
-const Entrenamiento = () => {
+const Rutinas = () => {
   return (
     <div className="pt-5">
         <div className='row container justify-content-evenly mt-5 pt-5'>
@@ -9,7 +9,7 @@ const Entrenamiento = () => {
           <div className='col-4'>
             <div className="card">
               <div className="card-header">
-                <span>Para Definir</span>
+                <span>Para definir</span>
               </div>
               <div className="card-body">
                 {entContentDef.map((item, index) => {
@@ -51,4 +51,4 @@ const Entrenamiento = () => {
   )
 }
 
-export default Entrenamiento;
+export default Rutinas;

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { IconContext } from 'react-icons';
@@ -8,6 +8,7 @@ import './Menu.css';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Menu = () => {
+  const navegacion = useNavigate();
   const [usuario,setUsuario] = useState(null);
   const user = getAuth();
   useEffect(()=>{
@@ -21,9 +22,8 @@ const Menu = () => {
     user.signOut();
     setUsuario(null);
     console.log('Usuario Desconectado');
-}
-  // const [sidebar, setSidebar] = useState(true);
-  // const showSidebar = () => setSidebar(!sidebar);
+    navegacion('/');
+  }
   return (  
     <>
     <div>
@@ -35,13 +35,26 @@ const Menu = () => {
           <div>
             <ul className='nav-menu-items' >
               {Menucontent.map((item, index) => {
+                
                 return (
+                  !usuario && item.title==="Cuenta"?
+                  (
+                    <li key={index}  className='nav-text'>
+                      <Link to={'/login'}>
+                        <FaIcons.FaUser></FaIcons.FaUser>
+                        <span>Inicio Sesión</span>
+                      </Link>
+                    </li>
+                  )
+                  :
+                  (
                   <li key={index} className={item.cName}>
                     <Link to={item.path}>
                       {item.icon}
                       <span>{item.title}</span>
                     </Link>
                   </li>
+                  )
                 );
               })}
             </ul>
@@ -54,7 +67,7 @@ const Menu = () => {
               )  
               :
               (
-                <button onClick={cerrarSesion} className="btn btn-danger ms-4">
+                <button onClick={cerrarSesion} className="btn btn-outline-warning">
                   <span>Cerrar sesion</span>
                 </button>
                 

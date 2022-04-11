@@ -3,7 +3,7 @@ import React from 'react';
 const Iniciar = ({setEmail, setPass, iniciar}) => {
     
     return (
-        <div className="col-4">
+        <div className="col-12 col-lg-4 col-md-6">
             <div className="card shadow">
                 <div className="card-body">
                     <form>
@@ -22,6 +22,7 @@ const Iniciar = ({setEmail, setPass, iniciar}) => {
                                     className="form-control" 
                                     id="email" 
                                     type="email" 
+                                    required={true}
                                     placeholder="Correo"
                                 />
                             </div>
@@ -36,9 +37,11 @@ const Iniciar = ({setEmail, setPass, iniciar}) => {
                                 <input 
                                     onChange={(e)=>{setPass(e.target.value)}}
                                     className="form-control mb-4" 
+                                    required={true}
                                     id="password" 
                                     type="password" 
                                     placeholder="******************"
+                                    autoComplete=''
                                 />
                             </div>
                         </div>
