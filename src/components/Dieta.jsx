@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const Dieta = () => {
     return (  
         <div className="row pt-5 justify-content-center" style={{"margin": "0"}}>
-            <div className="col-12 col-md-6 col-lg-3 pt-5 mt-5">
+            <div className="col-12 col-md-6 col-lg-4 pt-5 mt-5">
                 <div className="bg-dark bg-opacity-25 card shadow text-light">
-                    <div className="card-body text-white">
+                    <div className="card-body text-white text-center">
                         <h1 className='card-title'>Tipos de dietas</h1>
                         {Dietacontent.map((item, index) => {
                             return (

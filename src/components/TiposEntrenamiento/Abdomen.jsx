@@ -1,8 +1,8 @@
 import React from 'react';
-import { EnCreacion } from '../EnCreacion';
+import { EnCreacionRutina } from '../EnCreacionRutina';
 const Abdomen = () => {
   return (
-    <EnCreacion nombre="Abdomen"></EnCreacion>
+    <EnCreacionRutina nombre="Abdomen"></EnCreacionRutina>
   )
 }
 
