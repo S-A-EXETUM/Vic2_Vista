@@ -33,7 +33,7 @@ const Menu = () => {
             <img className='m-5 img-thumbnail w-50 rounded-circle' src='https://cdn.domestika.org/c_limit,dpr_1.0,f_auto,q_auto,w_610/v1513615213/content-items/002/192/266/08.randy-lewis-fotografias-surrealistas-original.jpg?1513615213' alt='logo'/>
           </div>
           <div>
-            <ul className='nav-menu-items' >
+            <ul className='nav-menu-items container-fluid' >
               {Menucontent.map((item, index) => {
                 
                 return (
