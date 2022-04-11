@@ -115,8 +115,8 @@
 
 .nav-text-dieta a {
   text-decoration: none;
-  /* color: #f5f5f5; */
-  color: #0f0f0f;
+  color: #f5f5f5;
+  /* color: #0f0f0f; */
   font-size: 18px;
   width: 95%;
   height: 100%;
@@ -127,10 +127,22 @@
 }
 .nav-text-dieta :hover {
   /* background-color: #1a83ff; */
-  background-color: #9fffac;
-  color: #1c1c1c;
+  /* background-color: #9fffac; */
+  /* background-color: #01acb9; */
+  background-color: #00edff;
+  /* color: #1c1c1c; */
+  /* color: #22577E; */
+  color: #595959;
+  box-shadow: #000;
 }
 /* @media screen and (max-width: 1300px) {
     .nav-menu {  width:100%; }
 
 } */
+
+.barra {
+  -webkit-box-shadow: 1px 0 200px 2px #1D3E53;
+  box-shadow: 1px 0 200px 2px #1D3E53;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
