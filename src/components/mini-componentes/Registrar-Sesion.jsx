@@ -3,18 +3,18 @@ import React from 'react';
 const Registrar = ({setEmail, setPass, registro}) => {
     return(
         <div className="col-12 col-lg-4 col-md-6">
-            <div className="card shadow">
+            <div className="bg-dark bg-opacity-25 card shadow text-light">
                 <div className="card-body">
                     <form>
                         <div>
                             <h1 className='text-center'>Registrarse</h1>
                         </div>
-                        <div className="mb-4">
-                            <div>
+                        <div className="mb-4 mt-4">
+                            {/* <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="register-email">
                                     Correo
                                 </label>
-                            </div>
+                            </div> */}
                             <div>
                                 <input 
                                     onChange={(e)=>{setEmail(e.target.value)}}
@@ -27,11 +27,11 @@ const Registrar = ({setEmail, setPass, registro}) => {
                             </div>
                         </div>
                         <div className="mb-6">
-                            <div>
+                            {/* <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="register-password">
                                     Contraseña
                                 </label>
-                            </div>
+                            </div> */}
                             <div>
                                 <input 
                                     onChange={(e)=>{setPass(e.target.value)}}
@@ -39,13 +39,13 @@ const Registrar = ({setEmail, setPass, registro}) => {
                                     id="register-password" 
                                     type="password" 
                                     required={true}
-                                    placeholder="******************"
+                                    placeholder="Contraseña"
                                     autoComplete=''
                                 />
                             </div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <button onClick={registro} className="btn btn-outline-success">Registrarse</button>
+                            <button onClick={registro} className="btn button-light-outline">Registrarse</button>
                         </div>
                     </form>
                 </div>

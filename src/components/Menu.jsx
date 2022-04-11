@@ -26,9 +26,9 @@ const Menu = () => {
   }
   return (  
     <>
-    <div>
+    <div className='barra'>
       <IconContext.Provider value={{ "color": "white"}}>
-        <div className='menu-bootstrap container-cristal'>
+        <div className='menu-bootstrap container-cristal barra'>
           <div >
             <img className='m-5 img-thumbnail w-50 rounded-circle' src='https://cdn.domestika.org/c_limit,dpr_1.0,f_auto,q_auto,w_610/v1513615213/content-items/002/192/266/08.randy-lewis-fotografias-surrealistas-original.jpg?1513615213' alt='logo'/>
           </div>

@@ -3,14 +3,12 @@ import { Dietacontent } from './Dietacontent';
 import { Link } from 'react-router-dom';
 const Dieta = () => {
     return (  
-        <div className="row container-fluid justify-content-evenly mt-5 pt-5">
-            <div className="mt-5">
-                <div className="col-4">
-                    <div className="card">
-                        <div className="card-header">
-                            <span>Tipos de dietas</span>
-                        </div>
-                        <div className="card-body">
+        <div className="position-absolute top-50 start-50 translate-middle row">
+            <div className="">
+                <div className="">
+                    <div className="bg-dark bg-opacity-25 card shadow text-light">
+                        <div className="card-body text-white">
+                            <h1 className='card-title'>Tipos de dietas</h1>
                             {Dietacontent.map((item, index) => {
                                 return (
                                     <li key={index} className={item.cName}>

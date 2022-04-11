@@ -4,18 +4,18 @@ const Iniciar = ({setEmail, setPass, iniciar}) => {
     
     return (
         <div className="col-12 col-lg-4 col-md-6">
-            <div className="card shadow">
+            <div className="bg-dark bg-opacity-25 card shadow text-light">
                 <div className="card-body">
                     <form>
                         <div>
                             <h1 className='text-center'>Iniciar Sesión</h1>
                         </div>
-                        <div className="mb-4">
-                            <div>
+                        <div className="mb-4 mt-4">
+                            {/* <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                                     Correo
                                 </label>
-                            </div>
+                            </div> */}
                             <div>
                                 <input 
                                     onChange={(e)=>{setEmail(e.target.value)}}
@@ -28,11 +28,11 @@ const Iniciar = ({setEmail, setPass, iniciar}) => {
                             </div>
                         </div>
                         <div className="mb-6">
-                            <div>
+                            {/* <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                                     Contraseña
                                 </label>
-                            </div>
+                            </div> */}
                             <div>
                                 <input 
                                     onChange={(e)=>{setPass(e.target.value)}}
@@ -40,13 +40,13 @@ const Iniciar = ({setEmail, setPass, iniciar}) => {
                                     required={true}
                                     id="password" 
                                     type="password" 
-                                    placeholder="******************"
+                                    placeholder='Contraseña'
                                     autoComplete=''
                                 />
                             </div>
                         </div>
                         <div className="flex items-center justify-between">
-                            <button onClick={iniciar} className="btn btn-outline-info">Iniciar Sesión</button>
+                            <button onClick={iniciar} className="btn button-light-outline">Iniciar Sesión</button>
                         </div>
                     </form>
                 </div>
