@@ -143,6 +143,6 @@
 .barra {
   -webkit-box-shadow: 1px 0 200px 2px #1D3E53;
   box-shadow: 1px 0 200px 2px #1D3E53;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }

@@ -67,7 +67,7 @@ const Menu = () => {
               )  
               :
               (
-                <button onClick={cerrarSesion} className="btn btn-outline-warning">
+                <button onClick={cerrarSesion} className="btn btn-outline-warning ms-4">
                   <span>Cerrar sesion</span>
                 </button>
                 
