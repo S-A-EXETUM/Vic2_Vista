@@ -1,10 +1,11 @@
 import React from 'react'
-import * as AiIcons from 'react-icons/ai';
-import * as ImIcons from 'react-icons/im';
-import * as GiIcons from 'react-icons/gi';
-import * as BsIcons from 'react-icons/bs';
-import * as BoxIcons from 'react-icons/bi';
+import * as AiIcons from 'react-icons/ai'
+import * as ImIcons from 'react-icons/im'
+import * as GiIcons from 'react-icons/gi'
+import * as BsIcons from 'react-icons/bs'
+import * as BoxIcons from 'react-icons/bi'
 
+// Ultima modificación Diego Canelo 7/04/2022
 export const Menucontent = [
     {
         title: 'Inicio',
@@ -17,7 +18,7 @@ export const Menucontent = [
         path: '/rutinas',
         icon: <GiIcons.GiWeightLiftingUp></GiIcons.GiWeightLiftingUp>,
         cName: 'nav-text'
-        
+
     },
     {
         title: 'Dieta',

@@ -5,7 +5,7 @@
     "backgroundAttachment": "fixed"}}>
     <h1>Hola</h1> */
 
-.background-image-blue{
+.background-image-blue {
     background-image: url("https://img.freepik.com/vector-gratis/fondo-nube-turquesa_91008-163.jpg");
     background-repeat: no-repeat;
     /* height: 100%;
@@ -15,25 +15,27 @@
 }
 
 .contenedor {
-	width: auto;
-	height: 100vh;
-	/* background: #fff; */
+    width: auto;
+    height: 100vh;
+    /* background: #fff; */
     position: fixed;
-	overflow: auto;
-	border-radius: 4px;
-}
-.contenedor::-webkit-scrollbar{
-    width: 10px;
-}
-.contenedor::-webkit-scrollbar-thumb {
-	background: #22577E;
-	border-radius: 5px;
+    overflow: auto;
+    border-radius: 4px;
 }
 
-.container-cristal{
-    background-color: rgba(32,87,126, 0.5);
+.contenedor::-webkit-scrollbar {
+    width: 10px;
+}
+
+.contenedor::-webkit-scrollbar-thumb {
+    background: #22577E;
+    border-radius: 5px;
+}
+
+.container-cristal {
+    background-color: rgba(32, 87, 126, 0.5);
     /* 22577E */
-    
+
     /* backdrop-filter: blur(10px); */
     border: solid 1px #5584AC;
     border-top-right-radius: 10px;
@@ -42,12 +44,23 @@
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 
-.button-light-outline{
+.button-light-outline {
     color: #f8f9fa;
     border-color: #f8f9fa;
 }
+
 .button-light-outline:hover {
     color: #1D3E53;
     background-color: #f8f9fa;
     border-color: #f8f9fa;
-  }
+}
+
+.a-light-decoration-none {
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+.a-light-decoration-none:hover {
+    cursor: pointer;
+    color: #9fffac;
+}

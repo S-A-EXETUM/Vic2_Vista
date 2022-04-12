@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
-import 'firebase/firestore';
-import { getFirestore } from "firebase/firestore";
-
+import { initializeApp } from "firebase/app"
+import 'firebase/firestore'
+import { getFirestore } from "firebase/firestore"
+// Ultima modificación Diego Canelo 7/04/2022
 const firebaseConfig = {
     apiKey: "AIzaSyBJIBEqZ8XVNdgUAmDxMgL2VN05Hyf7H7w",
     authDomain: "computer-app-d8da9.firebaseapp.com",
@@ -13,7 +13,7 @@ const firebaseConfig = {
   };
   
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore();
+  const app = initializeApp(firebaseConfig)
+  const db = getFirestore()
 
-  export {app , db};
+  export {app , db}

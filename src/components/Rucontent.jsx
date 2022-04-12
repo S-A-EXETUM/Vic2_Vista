@@ -1,10 +1,12 @@
 import React from 'react'
-import * as FaIcons from 'react-icons/fa';
-import * as ImIcons from 'react-icons/im';
-import * as GiIcons from 'react-icons/gi';
-import * as BsIcons from 'react-icons/bs';
-import * as BoxIcons from 'react-icons/bi';
+import * as FaIcons from 'react-icons/fa'
+import * as ImIcons from 'react-icons/im'
+import * as GiIcons from 'react-icons/gi'
+import * as BsIcons from 'react-icons/bs'
+import * as BoxIcons from 'react-icons/bi'
 
+// Ultima modificación Diego Canelo 7/04/2022
+// contenido de rutinas
 export const entContentDef = [
     {
         title: 'Brazos',
