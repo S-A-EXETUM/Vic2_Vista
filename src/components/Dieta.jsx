@@ -24,7 +24,7 @@ const Dieta = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
 export default Dieta

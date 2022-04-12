@@ -11,14 +11,12 @@ export const EnCreacion = ({ nombre }) => {
       axios.get(url)
         .then(response => {
           const { data } = response
-          console.log(data)
           setDieta(data)
         })
     }
     getDieta()
   }, [])
 
-  // Matthew Rocco
   return (<>
     <div className='row justify-content-center' style={{ "margin": "0" }}>
       <div className="text-center" style={{ "width": "700px" }}>
@@ -40,24 +38,22 @@ export const EnCreacion = ({ nombre }) => {
           </div>
           <div className="row justify-content-center" style={{ "margin": "0" }}>
             <div className="col-12">
-              <div className="card-header">
-                {dieta.map((item, index) => {
-                  return (
-                    nombre === item.tipoDieta ?
-                      (<div>
-                        <p>index={index} <br />
-                          nombre={item.nombre} <br />
-                          alimentos={item.alimentos} <br />
-                          infoNutricional={item.infoNutricional} <br />
-                          foto={item.foto} <br />
-                          horario={item.horario} <br />
-                        </p>
-                      </div>)
-                      :
-                      (<span></span>)
-                  )
-                })}
-              </div>
+              {dieta.map((item, index) => {
+                return (
+                  nombre === item.tipoDieta ?
+                    (<div>
+                      <p>index={index} <br />
+                        nombre={item.nombre} <br />
+                        alimentos={item.alimentos} <br />
+                        infoNutricional={item.infoNutricional} <br />
+                        foto={item.foto} <br />
+                        horario={item.horario} <br />
+                      </p>
+                    </div>)
+                    :
+                    (<span></span>)
+                )
+              })}
             </div>
           </div>
         </div>

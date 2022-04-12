@@ -40,24 +40,23 @@ export const EnCreacionRutina = ({ nombre }) => {
             </div>
             <div className="row justify-content-center" style={{ "margin": "0" }}>
               <div className="col-12">
-                <div className="card-header">
-                  {rutina.map((item, index) => {
-                    return (
-                      nombre === item.pCuerpo ?
-                        (<CardEjercicio
-                          index={index}
-                          nombre={item.nombre}
-                          pCuerpo={item.pCuerpo}
-                          descripcion={item.descripcion}
-                          repeticiones={item.repeticiones}
-                          set={item.set}
-                          video={item.video}
-                        />)
-                        :
-                        (<span></span>)
-                    )
-                  })}
-                </div>
+                {rutina.map((item, index) => {
+                  return (
+                    nombre === item.pCuerpo ?
+                      (<CardEjercicio
+                        index={index}
+                        nombre={item.nombre}
+                        pCuerpo={item.pCuerpo}
+                        descripcion={item.descripcion}
+                        repeticiones={item.repeticiones}
+                        set={item.set}
+                        video={item.video}
+                        musculoObj={item.musculoObj}
+                      />)
+                      :
+                      (<span></span>)
+                  )
+                })}
               </div>
             </div>
           </div>

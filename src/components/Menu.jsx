@@ -4,13 +4,13 @@ import * as FaIcons from 'react-icons/fa'
 import * as AiIcons from 'react-icons/ai'
 import { IconContext } from 'react-icons'
 import { Menucontent } from './Menucontent'
-import './Menu.css';
+import './Menu.css'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 // Ultima modificación Constanza Castillo 12/04/2022
 const Menu = () => {
-  const navegacion = useNavigate();
-  const [usuario, setUsuario] = useState(null);
+  const navegacion = useNavigate()
+  const [usuario, setUsuario] = useState(null)
   const user = getAuth()
   useEffect(() => {
     user.onAuthStateChanged((user) => {
@@ -23,7 +23,7 @@ const Menu = () => {
     user.signOut()
     setUsuario(null)
     console.log('Usuario Desconectado')
-    console.log(user);
+    console.log(user)
     navegacion('/')
   }
   return (
@@ -37,26 +37,21 @@ const Menu = () => {
             <div>
               <ul className='nav-menu-items container-fluid' >
                 {Menucontent.map((item, index) => {
-
                   return (
                     !usuario && item.title === "Cuenta" ?
-                      (
-                        <li key={index} className='nav-text'>
-                          <Link to={'/login'}>
-                            <FaIcons.FaUser></FaIcons.FaUser>
-                            <span>Inicio Sesión</span>
-                          </Link>
-                        </li>
-                      )
+                      (<li key={index} className='nav-text'>
+                        <Link to={'/login'}>
+                          <FaIcons.FaUser></FaIcons.FaUser>
+                          <span>Inicio Sesión</span>
+                        </Link>
+                      </li>)
                       :
-                      (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      )
+                      (<li key={index} className={item.cName}>
+                        <Link to={item.path}>
+                          {item.icon}
+                          <span>{item.title}</span>
+                        </Link>
+                      </li>)
                   )
                 })}
               </ul>
@@ -64,18 +59,12 @@ const Menu = () => {
             <div>
               {
                 !usuario ?
-                  (
-                    <span></span>
-                  )
+                  (<span></span>)
                   :
-                  (
-                    <button onClick={cerrarSesion} className="btn btn-outline-warning ms-4">
-                      <span>Cerrar sesión</span>
-                    </button>
-
-                  )
+                  (<button onClick={cerrarSesion} className="btn btn-outline-warning ms-4">
+                    Cerrar sesión
+                  </button>)
               }
-
             </div>
           </div>
         </IconContext.Provider>

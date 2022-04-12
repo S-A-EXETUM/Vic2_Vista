@@ -58,4 +58,4 @@ const Formulario = ({ setEmail, setPass, titulo, funcion, id, tipo }) => {
 }
 
 
-export default Formulario;
+export default Formulario

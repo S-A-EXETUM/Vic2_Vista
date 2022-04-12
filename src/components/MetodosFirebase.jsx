@@ -18,7 +18,7 @@ export const UsuarioLog = () => {
     }, [])
 }
 export const resetPassword = ({ email }) => {
-    const user = getAuth();
+    const user = getAuth()
     sendPasswordResetEmail(user, email)
         .then(() => {
             // Password reset email sent!

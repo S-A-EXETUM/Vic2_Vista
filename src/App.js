@@ -31,6 +31,7 @@ function App() {
         <div className='col-lg col-md col' style={{"padding": "0"}}>
           <Routes>
             <Route path='/' element={<Inicio/>}/>
+            {/* Lo mismo que en cuenta pero lo contrario */}
             <Route path='/login' element={<Login/>}/>
             <Route path='/rutinas' element={<Rutinas/>}/>
             <Route path='/dieta' element={<Dieta/>}/>

@@ -1,24 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { getAuth, onAuthStateChanged } from "firebase/auth"
 //import imagen from '../../public/verde.jpg'
 
 //const urlImg = "https://img.freepik.com/vector-gratis/fondo-nube-turquesa_91008-163.jpg"
 // Constanza Castillo 12/04/2022
 const Inicio = () => {
-  const [usuario, setUsuario] = useState('')
-  const user = getAuth()
-  const navegacion = useNavigate()
-  const redirectLogin = () => {
-    navegacion('/login')
-  }
-  useEffect(() => {
-    user.onAuthStateChanged((user) => {
-      if (user) {
-        setUsuario(user.email)
-      }
-    })
-  }, [])
   return (
     <div className='row container justify-content-evenly'>
       <div id="carouselExampleCaptions" className="carousel slide p-5" style={{ "width": "90%" }} data-bs-ride="carousel">
