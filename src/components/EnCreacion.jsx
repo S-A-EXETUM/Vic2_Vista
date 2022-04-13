@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // Ultima modificación Matthew Rocco y Diego Canelo 12/04/2022
 export const EnCreacion = ({ nombre }) => {
-  const url = 'http://b3a8-186-21-192-20.ngrok.io/dietas/'
+  const url = 'http://localhost:3001/dietas/'
   const [dieta, setDieta] = useState([])
 
   useEffect(() => {

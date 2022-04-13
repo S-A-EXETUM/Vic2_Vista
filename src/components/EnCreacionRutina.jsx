@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // Ultima modificación Matthew Rocco 12/04/2022
 export const EnCreacionRutina = ({ nombre }) => {
-  const url = 'http://b3a8-186-21-192-20.ngrok.io/ejercicios/'
+  const url = 'http://localhost:3001/ejercicios/'
   const [rutina, setRutina] = useState([])
 
   useEffect(() => {
