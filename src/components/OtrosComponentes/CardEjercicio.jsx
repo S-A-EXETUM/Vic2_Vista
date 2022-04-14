@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as AiIcons from 'react-icons/ai'
 
 // Ultima modificación Matthew Rocco 12/04/2022
-export default function CardEjercicio({ musculoObj, pCuerpo, nombre, video, descripcion, repeticiones, set, index }) {
+export default function CardEjercicio({ musculoObj, nombre, video, descripcion, repeticiones, set, index }) {
     return (
         <>
             <div key={index} className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">

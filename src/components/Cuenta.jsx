@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { app } from '../firebaseconfig'
+import { app, db } from '../firebaseconfig'
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth"
 
 // Ultima modificación Constanza Castillo 12/04/2022
@@ -7,6 +8,22 @@ const Cuenta = () => {
   const [email, setEmail] = useState('')
   const [time, setTime] = useState('')
   const user = getAuth()
+  // const idUser = user.currentUser.uid
+  // const [admin, setAdmin] = useState(false)
+  // useEffect(() => {
+  //   const getAdmins = async () => {
+  //     const { docs } = await getDocs(collection(db, "users"))
+  //     const datos = docs.map(item => ({ id: item.id, ...item.data() }))
+  //     for (let index = 0; index < datos.length; index++) {
+  //       if (datos[index].id == idUser) {
+  //         setAdmin(true)
+  //       }
+  //     }
+
+  //   }
+  //   getAdmins();
+  //   console.log(admin);
+  // })
 
   useEffect(() => {
     user.onAuthStateChanged((user) => {
@@ -22,6 +39,7 @@ const Cuenta = () => {
         // Password reset email sent!
         // ..
         alert('Correo de restauración de contraseña enviada!')
+
       })
       .catch((error) => {
         const errorCode = error.code
@@ -49,7 +67,6 @@ const Cuenta = () => {
         </div>
 
         <div className="col-12">
-
         </div>
       </div>
     </>

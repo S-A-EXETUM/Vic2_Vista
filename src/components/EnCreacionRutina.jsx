@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import CardEjercicio from './OtrosComponentes/CardEjercicio'
 import axios from 'axios'
+import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco 12/04/2022
 export const EnCreacionRutina = ({ nombre }) => {
-  const url = 'http://b3a8-186-21-192-20.ngrok.io/ejercicios/'
+  const url = 'http://1dcd-186-21-192-20.ngrok.io/ejercicios/'
   const [rutina, setRutina] = useState([])
 
   useEffect(() => {
@@ -14,6 +15,9 @@ export const EnCreacionRutina = ({ nombre }) => {
           const { data } = response
           setRutina(data)
         })
+        .catch(
+          setRutina(undefined)
+        )
     }
     getRutina()
   }, [])
@@ -40,23 +44,26 @@ export const EnCreacionRutina = ({ nombre }) => {
             </div>
             <div className="row justify-content-center" style={{ "margin": "0" }}>
               <div className="col-12">
-                {rutina.map((item, index) => {
-                  return (
-                    nombre === item.pCuerpo ?
-                      (<CardEjercicio
-                        index={index}
-                        nombre={item.nombre}
-                        pCuerpo={item.pCuerpo}
-                        descripcion={item.descripcion}
-                        repeticiones={item.repeticiones}
-                        set={item.set}
-                        video={item.video}
-                        musculoObj={item.musculoObj}
-                      />)
-                      :
-                      (<span></span>)
-                  )
-                })}
+                {rutina !== undefined ?
+                  rutina.map((item, index) => {
+                    return (
+                      nombre === item.pCuerpo ?
+                        (<CardEjercicio
+                          index={index}
+                          nombre={item.nombre}
+                          descripcion={item.descripcion}
+                          repeticiones={item.repeticiones}
+                          set={item.set}
+                          video={item.video}
+                          musculoObj={item.musculoObj}
+                        />)
+                        :
+                        (<span></span>)
+                    )
+                  })
+                  :
+                  (<Spinner />)
+                }
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { app } from '../firebaseconfig'
+import { app, db } from '../firebaseconfig'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 import Formulario from './OtrosComponentes/Formulario'
 import { useNavigate } from 'react-router-dom'
@@ -9,8 +9,11 @@ const Login = () => {
   const navegacion = useNavigate()
   const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
+  const [errorR, setErrorR] = useState('')
+  const [errorL, setErrorL] = useState('')
 
   const auth = getAuth()
+
   const registro = (e) => {
     e.preventDefault()
     if (email == "") { }
@@ -23,17 +26,21 @@ const Login = () => {
         // ...
       }).catch(e => {
         if (e == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-          alert("Correo invalido.")
+          setErrorR('Correo inválido')
         }
         else if (e == "FirebaseError: Firebase: Error (auth/internal-error).") {
-          alert("Credenciales incorrectas")
+          setErrorR('Credenciales incorrectas')
         }
         else if (e == "FirebaseError: Firebase: Error (auth/wrong-password).") {
-          alert("Contraseña Incorrecta")
+          setErrorR('Credenciales incorrectas')
         }
         else {
-          alert(e)
+          setErrorR(e)
         }
+
+        setTimeout(() => {
+          setErrorR(null);
+        }, 2000)
       })
   }
 
@@ -48,14 +55,21 @@ const Login = () => {
         // ...
       }).catch(e => {
         if (e == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-          alert("Correo invalido.")
+          setErrorL('Correo inválido')
         }
         else if (e == "FirebaseError: Firebase: Error (auth/internal-error).") {
-          alert("Credenciales incorrectas")
+          setErrorL('Credenciales incorrectas')
+        }
+        else if (e == "FirebaseError: Firebase: Error (auth/wrong-password).") {
+          setErrorL('Credenciales incorrectas')
         }
         else {
-          alert(e)
+          setErrorL(e)
         }
+
+        setTimeout(() => {
+          setErrorL(null);
+        }, 2000)
       })
   }
 
@@ -63,10 +77,10 @@ const Login = () => {
     <div className="pt-5">
       <div className='row container justify-content-evenly mt-5 pt-5'>
         {/* Formulario de registro */}
-        <Formulario funcion={registro} id={"1"} setEmail={setEmail} setPass={setPass} titulo={"Registrarse"} tipo={null} />
+        <Formulario funcion={registro} id={"1"} setEmail={setEmail} setPass={setPass} titulo={"Registrarse"} tipo={null} error={errorR} />
 
         {/* Formulario de inicio de sesión */}
-        <Formulario titulo={"Iniciar Sesión"} id={"1"} funcion={iniciarSesion} setEmail={setEmail} setPass={setPass} tipo={"inicio"} />
+        <Formulario titulo={"Iniciar Sesión"} id={"1"} funcion={iniciarSesion} setEmail={setEmail} setPass={setPass} tipo={"inicio"} error={errorL} />
       </div>
 
     </div>

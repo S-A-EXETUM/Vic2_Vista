@@ -18,7 +18,7 @@ const Inicio = () => {
             <div className="carousel-caption d-none d-md-block">
               <div className='bg-dark bg-opacity-50 card shadow text-light'>
                 <h5>Vic2</h5>
-                <p>Aplicación de dietas y ejercicios</p>
+                <p>Aplicación de dietas y ejercicios en casa</p>
               </div>
             </div>
           </div>

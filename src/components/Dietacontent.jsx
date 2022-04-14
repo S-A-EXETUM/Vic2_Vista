@@ -8,25 +8,25 @@ import * as BoxIcons from 'react-icons/bi'
 // Ultima modificación Diego Canelo 7/04/2022
 export const Dietacontent = [
     {
-        title: 'Para Ectomorfo',
+        title: 'Ectomorfo',
         path: '/dieta/ectomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
-        title: 'Para Endomorfo',
+        title: 'Endomorfo',
         path: '/dieta/endomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
-        title: 'Para Mesomorfo',
+        title: 'Mesomorfo',
         path: '/dieta/mesomorfo',
         icon: <ImIcons.ImManWoman></ImIcons.ImManWoman>,
         cName: 'nav-text-dieta'
     },
     {
-        title: 'Para definir',
+        title: 'Definir',
         path: '/dieta/definir',
         icon: <GiIcons.GiMeat></GiIcons.GiMeat>,
         cName: 'nav-text-dieta'

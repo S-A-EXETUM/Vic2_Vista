@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import CardDieta from './OtrosComponentes/CardDieta'
+import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco y Diego Canelo 12/04/2022
 export const EnCreacion = ({ nombre }) => {
-  const url = 'http://b3a8-186-21-192-20.ngrok.io/dietas/'
+  const url = 'http://1dcd-186-21-192-20.ngrok.io/dietas/'
   const [dieta, setDieta] = useState([])
 
   useEffect(() => {
@@ -13,6 +15,9 @@ export const EnCreacion = ({ nombre }) => {
           const { data } = response
           setDieta(data)
         })
+        .catch(
+          setDieta(undefined)
+        )
     }
     getDieta()
   }, [])
@@ -38,22 +43,27 @@ export const EnCreacion = ({ nombre }) => {
           </div>
           <div className="row justify-content-center" style={{ "margin": "0" }}>
             <div className="col-12">
-              {dieta.map((item, index) => {
-                return (
-                  nombre === item.tipoDieta ?
-                    (<div>
-                      <p>index={index} <br />
-                        nombre={item.nombre} <br />
-                        alimentos={item.alimentos} <br />
-                        infoNutricional={item.infoNutricional} <br />
-                        foto={item.foto} <br />
-                        horario={item.horario} <br />
-                      </p>
-                    </div>)
-                    :
-                    (<span></span>)
-                )
-              })}
+              {dieta !== undefined ?
+                dieta.map((item, index) => {
+                  return (
+                    nombre === item.tipoDieta ?
+                      (<div key={index}>
+                        <CardDieta
+                          index={index}
+                          nombre={item.nombre}
+                          alimentos={item.alimentos}
+                          infoNutricional={item.infoNutricional}
+                          foto={item.foto}
+                          horario={item.horario}
+                        />
+                      </div>)
+                      :
+                      (<span></span>)
+                  )
+                })
+                :
+                (<Spinner />)
+              }
             </div>
           </div>
         </div>

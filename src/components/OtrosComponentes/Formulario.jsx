@@ -7,7 +7,7 @@ const cambioClave = () => {
     resetPassword(correo)
 }
 // Ultima modificación Matthew Rocco 12/04/2022
-const Formulario = ({ setEmail, setPass, titulo, funcion, id, tipo }) => {
+const Formulario = ({ setEmail, setPass, titulo, funcion, id, tipo, error }) => {
     return (
         <div className="col-12 col-lg-4 col-md-6">
             <div className="bg-dark bg-opacity-25 card shadow text-light">
@@ -49,6 +49,14 @@ const Formulario = ({ setEmail, setPass, titulo, funcion, id, tipo }) => {
                                 (<span />)
                                 :
                                 (<a onClick={cambioClave} className="text-sm-start a-light-decoration-none ms-2">Cambio de Contraseña</a>)
+                        }
+                        {
+                            error ?
+                                (<div className='alert alert-danger mt-2' style={{ "padding": "3px", "padding-left": "10px" }}>
+                                    {error}
+                                </div>)
+                                :
+                                (<></>)
                         }
                     </form>
                 </div>

@@ -5,13 +5,39 @@ import * as AiIcons from 'react-icons/ai'
 import { IconContext } from 'react-icons'
 import { Menucontent } from './Menucontent'
 import './Menu.css'
+import { app, db } from '../firebaseconfig'
+import { collection, getDocs } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth"
 
 // Ultima modificación Constanza Castillo 12/04/2022
 const Menu = () => {
   const navegacion = useNavigate()
   const [usuario, setUsuario] = useState(null)
+  const [idUser, setIdUser] = useState()
   const user = getAuth()
+
+  const [admin, setAdmin] = useState(false)
+
+  useEffect(() => {
+    const getAdmins = async () => {
+      console.log(user);
+      if (user.currentUser) {
+        setIdUser(user.currentUser.uid)
+      }
+      const { docs } = await getDocs(collection(db, "users"))
+      const datos = docs.map(item => ({ id: item.id, ...item.data() }))
+      for (let index = 0; index < datos.length; index++) {
+        if (datos[index].id == idUser) {
+          setAdmin(true)
+          break
+        }
+      }
+
+    }
+    getAdmins();
+    console.log(admin);
+  })
+
   useEffect(() => {
     user.onAuthStateChanged((user) => {
       if (user) {
@@ -22,6 +48,8 @@ const Menu = () => {
   const cerrarSesion = () => {
     user.signOut()
     setUsuario(null)
+    setIdUser(null)
+    setAdmin(false)
     console.log('Usuario Desconectado')
     console.log(user)
     navegacion('/')
@@ -52,18 +80,33 @@ const Menu = () => {
                           <span>{item.title}</span>
                         </Link>
                       </li>)
+
                   )
                 })}
+                {
+                  !usuario ?
+                    (<></>)
+                    :
+                    (!admin ?
+                      <></>
+                      : (<li key={0} className='nav-text'>
+                        <Link to={'/administrador'}>
+                          <FaIcons.FaUser></FaIcons.FaUser>
+                          <span>Administrador</span>
+                        </Link>
+                      </li>))
+                }
               </ul>
             </div>
             <div>
               {
                 !usuario ?
-                  (<span></span>)
+                  (<></>)
                   :
-                  (<button onClick={cerrarSesion} className="btn btn-outline-warning ms-4">
-                    Cerrar sesión
-                  </button>)
+                  (
+                    <button onClick={cerrarSesion} className="btn btn-outline-warning ms-4">
+                      Cerrar sesión
+                    </button>)
               }
             </div>
           </div>
