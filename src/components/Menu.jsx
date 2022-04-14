@@ -13,15 +13,16 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 const Menu = () => {
   const navegacion = useNavigate()
   const [usuario, setUsuario] = useState(null)
-  const [idUser, setIdUser] = useState()
+  const [idUser, setIdUser] = useState(null)
   const user = getAuth()
 
   const [admin, setAdmin] = useState(false)
 
   useEffect(() => {
+    setIdUser(null)
     const getAdmins = async () => {
       console.log(user);
-      if (user.currentUser) {
+      if (user.currentUser != null) {
         setIdUser(user.currentUser.uid)
       }
       const { docs } = await getDocs(collection(db, "users"))

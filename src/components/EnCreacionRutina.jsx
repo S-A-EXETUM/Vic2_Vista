@@ -5,7 +5,9 @@ import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco 12/04/2022
 export const EnCreacionRutina = ({ nombre }) => {
+
   const url = 'http://1dcd-186-21-192-20.ngrok.io/ejercicios/'
+
   const [rutina, setRutina] = useState([])
 
   useEffect(() => {
