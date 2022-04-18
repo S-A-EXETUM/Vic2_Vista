@@ -4,8 +4,8 @@ import CardDieta from './OtrosComponentes/CardDieta'
 import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco y Diego Canelo 12/04/2022
-export const EnCreacion = ({ nombre }) => {
-  const url = 'http://1dcd-186-21-192-20.ngrok.io/dietas/'
+export const EnCreacion = ({ nombre, descripcion }) => {
+  const url = 'http://143a-186-21-192-20.ngrok.io/dietas/'
   const [dieta, setDieta] = useState([])
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const EnCreacion = ({ nombre }) => {
           <div className='row justify-content-center' style={{ "margin": "0" }}>
             <div className="col-10">
               <div className="card-body text-center">
-                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro vero repellendus commodi aliquid quod, ratione, esse et doloremque recusandae molestias qui excepturi deleniti exercitationem iste reprehenderit vel alias accusantium voluptas!</span>
+                <span>{descripcion}</span>
               </div>
             </div>
           </div>

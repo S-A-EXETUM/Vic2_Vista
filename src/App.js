@@ -1,6 +1,8 @@
 import React , {useState, useEffect} from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import './App.css'
+import { app, db } from './firebaseconfig'
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import Entrenamiento from './components/TiposEntrenamiento/Entrenamiento'
 import TipoDieta from './components/TiposDietas/TipoDieta'
 import Rutinas from './components/Rutinas'
@@ -18,6 +20,20 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 function App() {
   const [usuario, setUsuario] = useState(null)
   const user = getAuth()
+  const [admin, setAdmin] = useState(false)
+  useEffect(() => {
+    const getAdmins = async () => {
+      const { docs } = await getDocs(collection(db, "users"))
+      const datos = docs.map(item => ({ id: item.id, ...item.data() }))
+      for (let index = 0; index < datos.length; index++) {
+        if (datos[index].id == user.currentUser.uid) {
+          setAdmin(true)
+        }
+      }
+      console.log('admin: ' + admin)
+    }
+    getAdmins()
+  })
   useEffect(()=>{
     user.onAuthStateChanged((user)=>{
       if(user){
@@ -46,19 +62,19 @@ function App() {
             }
 
             {
-              entContentDef.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} />}/>)
+              entContentDef.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              entContentAde.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} />}/>)
+              entContentAde.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              Dietacontent.map((item, index) => <Route path={item.path} element={<TipoDieta nombre={item.title} />}/>)
+              Dietacontent.map((item, index) => <Route path={item.path} element={<TipoDieta nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              usuario? 
+              admin? 
               (<Route path='/administrador' element={<Administrador/>}/>)
               :
               (<Route path='/administrador' element={<Login/>}/> )

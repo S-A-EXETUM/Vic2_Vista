@@ -13,31 +13,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth"
 const Menu = () => {
   const navegacion = useNavigate()
   const [usuario, setUsuario] = useState(null)
-  const [idUser, setIdUser] = useState(null)
   const user = getAuth()
 
-  const [admin, setAdmin] = useState(false)
-
-  useEffect(() => {
-    setIdUser(null)
-    const getAdmins = async () => {
-      console.log(user);
-      if (user.currentUser != null) {
-        setIdUser(user.currentUser.uid)
-      }
-      const { docs } = await getDocs(collection(db, "users"))
-      const datos = docs.map(item => ({ id: item.id, ...item.data() }))
-      for (let index = 0; index < datos.length; index++) {
-        if (datos[index].id == idUser) {
-          setAdmin(true)
-          break
-        }
-      }
-
-    }
-    getAdmins();
-    console.log(admin);
-  })
 
   useEffect(() => {
     user.onAuthStateChanged((user) => {
@@ -49,8 +26,6 @@ const Menu = () => {
   const cerrarSesion = () => {
     user.signOut()
     setUsuario(null)
-    setIdUser(null)
-    setAdmin(false)
     console.log('Usuario Desconectado')
     console.log(user)
     navegacion('/')
@@ -84,19 +59,6 @@ const Menu = () => {
 
                   )
                 })}
-                {
-                  !usuario ?
-                    (<></>)
-                    :
-                    (!admin ?
-                      <></>
-                      : (<li key={0} className='nav-text'>
-                        <Link to={'/administrador'}>
-                          <FaIcons.FaUser></FaIcons.FaUser>
-                          <span>Administrador</span>
-                        </Link>
-                      </li>))
-                }
               </ul>
             </div>
             <div>

@@ -4,9 +4,9 @@ import axios from 'axios'
 import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco 12/04/2022
-export const EnCreacionRutina = ({ nombre }) => {
+export const EnCreacionRutina = ({ nombre, descripcion }) => {
 
-  const url = 'http://1dcd-186-21-192-20.ngrok.io/ejercicios/'
+  const url = 'http://143a-186-21-192-20.ngrok.io/ejercicios/'
 
   const [rutina, setRutina] = useState([])
 
@@ -26,6 +26,7 @@ export const EnCreacionRutina = ({ nombre }) => {
 
   return (
     <>
+
       <div className='row justify-content-center' style={{ "margin": "0" }}>
         <div className="text-center" style={{ "width": "700px" }}>
           <div className='mt-4 mb-3 bg-black bg-opacity-10 card card-body'>
@@ -40,7 +41,7 @@ export const EnCreacionRutina = ({ nombre }) => {
             <div className='row justify-content-center' style={{ "margin": "0" }}>
               <div className="col-10">
                 <div className="card-body text-center">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro vero repellendus commodi aliquid quod, ratione, esse et doloremque recusandae molestias qui excepturi deleniti exercitationem iste reprehenderit vel alias accusantium voluptas!</span>
+                  <span>{descripcion}</span>
                 </div>
               </div>
             </div>
@@ -60,7 +61,7 @@ export const EnCreacionRutina = ({ nombre }) => {
                           musculoObj={item.musculoObj}
                         />)
                         :
-                        (<span></span>)
+                        (<></>)
                     )
                   })
                   :
