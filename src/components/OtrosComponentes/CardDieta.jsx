@@ -1,8 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import * as AiIcons from 'react-icons/ai'
-
+import { app } from '../../firebaseconfig'
+import { getAuth } from "firebase/auth"
+import axios from 'axios'
+import { usuarioLogged } from '../MetodosFirebase'
 // Ultima modificación Matthew Rocco 12/04/2022
-export default function CardDieta({ nombre, alimentos, infoNutricional, foto, horario, index }) {
+export default function CardDieta({ id, nombre, alimentos, infoNutricional, foto, horario, index }) {
+
+    const idUser = usuarioLogged()
+    const url = process.env.REACT_APP_BACKEND_URL + `favoritos/`
+
+    const guardarFav = (e) => {
+        e.preventDefault()
+
+        const id_rutina = null
+        const id_usuario = idUser
+        const id_dieta = id
+
+        axios.post(url, {
+            id_usuario,
+            id_rutina,
+            id_dieta
+        }).then((resp) => {
+            console.log(resp)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     return (
         <>
             <div key={index} className="bg-opacity-10 bg-white border-1 border-white card card-body m-4">
@@ -11,7 +36,7 @@ export default function CardDieta({ nombre, alimentos, infoNutricional, foto, ho
                         <p>Nombre: {nombre}</p>
                     </div>
                     <div className="col col-lg col-md">
-                        <button className='btn btn-sm btn-info bg-transparent border-0' ><AiIcons.AiOutlineStar style={{ 'width': '25px', 'height': '25px' }} /></button>
+                        <button onClick={guardarFav} className='btn btn-sm btn-info bg-transparent border-0' ><AiIcons.AiOutlineStar style={{ 'width': '25px', 'height': '25px' }} /></button>
                     </div>
                 </div>
                 <div className="row">

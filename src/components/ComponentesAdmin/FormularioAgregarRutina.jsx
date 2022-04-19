@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina }) => {
 
     return (
-        <div className='bg-info bg-opacity-50 card card-body m-2'>
+        <div className='bg-info bg-opacity-50 card-body m-2'>
             <form>
                 <div>
                     <h3 className='text-center'>Añadir</h3>

@@ -30,7 +30,7 @@ function App() {
           setAdmin(true)
         }
       }
-      console.log('admin: ' + admin)
+      // console.log('admin: ' + admin)
     }
     getAdmins()
   })

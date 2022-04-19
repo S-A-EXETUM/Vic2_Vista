@@ -5,7 +5,7 @@ import { Spinner } from './OtrosComponentes/Spinner'
 
 // Ultima modificación Matthew Rocco y Diego Canelo 12/04/2022
 export const EnCreacion = ({ nombre, descripcion }) => {
-  const url = 'http://143a-186-21-192-20.ngrok.io/dietas/'
+  const url = process.env.REACT_APP_BACKEND_URL + `dietas/tipo/${nombre}`
   const [dieta, setDieta] = useState([])
 
   useEffect(() => {
@@ -49,6 +49,8 @@ export const EnCreacion = ({ nombre, descripcion }) => {
                     nombre === item.tipoDieta ?
                       (<div key={index}>
                         <CardDieta
+                          key={item.id}
+                          id={item.id}
                           index={index}
                           nombre={item.nombre}
                           alimentos={item.alimentos}

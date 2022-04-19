@@ -5,7 +5,7 @@ import { FormularioBuscar } from './FormularioBuscar'
 export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina }) => {
 
     return (
-        <div className="bg-opacity-25 pt-3 card shadow">
+        <div className="bg-opacity-25 pt-3">
             <div className='row'>
                 <div className='col-lg-2 col-md-2 col-6 '>
                     <ul>

@@ -4,7 +4,7 @@ import { AdminDieta } from './ComponentesAdmin/AdminDieta'
 import { AdminRutina } from './ComponentesAdmin/AdminRutina'
 export const Administrador = () => {
 
-    const url = 'http://143a-186-21-192-20.ngrok.io/'
+    const url = process.env.REACT_APP_BACKEND_URL
 
     const [errorRutina, setErrorRutina] = useState('')
     const [errorDieta, setErrorDieta] = useState('')
@@ -75,34 +75,36 @@ export const Administrador = () => {
     return (
         <div className="pt-5 contenedor pb-5" style={{ 'width': '100%' }}>
             <div className='row container justify-content-center' style={{ 'margin': '0', }}>
-                <div className="col-lg-7">
-                    <nav>
-                        <div className="nav nav-tabs" id="nav-tab" role="tablist">
+                <div className="card col-lg-7" style={{ "padding": "0" }}>
+                    <div class="card-header">
+                        <div className="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                             <button className="nav-link active" id="nav-rutina-tab" data-bs-toggle="tab" data-bs-target="#nav-rutina" type="button" role="tab" aria-controls="nav-rutina" aria-selected="true">Rutina</button>
                             <button className="nav-link" id="nav-dieta-tab" data-bs-toggle="tab" data-bs-target="#nav-dieta" type="button" role="tab" aria-controls="nav-dieta" aria-selected="false">Dieta</button>
                         </div>
-                    </nav>
-                    <div className="tab-content" id="nav-tabContent">
-                        <div className="tab-pane fade active show" id="nav-rutina" role="tabpanel" aria-labelledby="nav-rutina-tab">
-                            <AdminRutina
-                                funcion={guardarRutina}
-                                setPCuerpo={setPCuerpo}
-                                setMusculoObj={setMusculoObj}
-                                setNombre={setNombre}
-                                setVideo={setVideo}
-                                setDescripcion={setDescripcion}
-                                setRepeticiones={setRepeticiones}
-                                setSet={setSet}
-                                errorRutina={errorRutina} />
-                        </div>
-                        <div className="tab-pane fade" id="nav-dieta" role="tabpanel" aria-labelledby="nav-dieta-tab">
-                            <AdminDieta funcion={guardarDieta}
-                                setTipoDieta={setTipoDieta}
-                                setNombreD={setNombreD}
-                                setAlimentos={setAlimentos}
-                                setInfoNutricional={setInfoNutricional}
-                                setFoto={setFoto}
-                                setHorario={setHorario} />
+                    </div>
+                    <div className="card-body">
+                        <div className="tab-content" id="nav-tabContent">
+                            <div className="tab-pane fade active show" id="nav-rutina" role="tabpanel" aria-labelledby="nav-rutina-tab">
+                                <AdminRutina
+                                    funcion={guardarRutina}
+                                    setPCuerpo={setPCuerpo}
+                                    setMusculoObj={setMusculoObj}
+                                    setNombre={setNombre}
+                                    setVideo={setVideo}
+                                    setDescripcion={setDescripcion}
+                                    setRepeticiones={setRepeticiones}
+                                    setSet={setSet}
+                                    errorRutina={errorRutina} />
+                            </div>
+                            <div className="tab-pane fade" id="nav-dieta" role="tabpanel" aria-labelledby="nav-dieta-tab">
+                                <AdminDieta funcion={guardarDieta}
+                                    setTipoDieta={setTipoDieta}
+                                    setNombreD={setNombreD}
+                                    setAlimentos={setAlimentos}
+                                    setInfoNutricional={setInfoNutricional}
+                                    setFoto={setFoto}
+                                    setHorario={setHorario} />
+                            </div>
                         </div>
                     </div>
                 </div>

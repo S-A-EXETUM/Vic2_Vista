@@ -34,3 +34,17 @@ export const resetPassword = ({ email }) => {
             // ..
         })
 }
+
+export const usuarioLogged = () => {
+    const user = getAuth()
+    const [idUser, setIdUser] = useState('')
+
+    useEffect(() => {
+        user.onAuthStateChanged((user) => {
+            if (user) {
+                setIdUser(user.uid)
+            }
+        })
+    })
+    return (idUser)
+}

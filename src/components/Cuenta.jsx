@@ -3,7 +3,7 @@ import { app, db } from '../firebaseconfig'
 import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged, sendPasswordResetEmail } from "firebase/auth"
 import { useNavigate } from 'react-router-dom'
-
+import axios from 'axios'
 // Ultima modificación Constanza Castillo 12/04/2022
 const Cuenta = () => {
   const navegacion = useNavigate();
@@ -12,6 +12,8 @@ const Cuenta = () => {
   const user = getAuth()
   const idUser = user.currentUser.uid
   const [admin, setAdmin] = useState(false)
+
+
   useEffect(() => {
     const getAdmins = async () => {
       const { docs } = await getDocs(collection(db, "users"))
@@ -21,7 +23,7 @@ const Cuenta = () => {
           setAdmin(true)
         }
       }
-      console.log('admin: ' + admin)
+      // console.log('admin: ' + admin)
     }
     getAdmins()
   })
@@ -91,11 +93,7 @@ const Cuenta = () => {
                 <div className="row justify-content-center" style={{ "margin": "0" }}>
                   <div className="col-12 me-5">
                     <Cardsv />
-                    <Cardsv />
-                    <Cardsv />
-                    <Cardsv />
-                    <Cardsv />
-                    <Cardsv />
+
                   </div>
                 </div>
               </div>
@@ -108,24 +106,92 @@ const Cuenta = () => {
   )
 }
 const Cardsv = () => {
+  const user = getAuth()
+  const idUser = user.currentUser.uid
+  const [favorito, setFavorito] = useState([])
+
+  const url = process.env.REACT_APP_BACKEND_URL + `favoritos/usuario/${idUser}`
+
+  useEffect(() => {
+    const getFavoritos = () => {
+      axios.get(url)
+        .then(response => {
+          const { data } = response
+          setFavorito(data)
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    }
+    getFavoritos()
+
+  }, [])
   return (
     <>
-      <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
-        <div className="justify-content-between row">
-          <div className="col-11 col-md-6 col-lg-6">
-            <p>Nombre:</p>
-          </div>
+      {
+        favorito.map((item, index) => {
+          return (
+            <>
+              {
+                item.id_rutina != null ?
+                  (
+                    <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
+                      <div className="justify-content-between row">
+                        <div className="col-11 col-md-6 col-lg-6">
+                          <p>Nombre: {item.id_rutina[0].nombre}</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col col-lg col-md">
+                          <h6>Músculo: {item.id_rutina[0].musculoObj}</h6>
+                          <h6>Descripción: <br /> {item.id_rutina[0].descripcion}</h6>
+                          <h6>Repeticiones: {item.id_rutina[0].repeticiones}</h6>
+                          <h6>Set: {item.id_rutina[0].set}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <></>
+                  )
+              }
+            </>
+          )
+        })
+      }
 
-        </div>
-        <div className="row">
-          <div className="col col-lg col-md">
-            <h6>Músculo:</h6>
-            <h6>Descripción: <br />Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis, quidem rerum neque, natus, sed placeat distinctio repellendus obcaecati hic ipsa est reprehenderit voluptatem voluptas iste dicta voluptate voluptates! Corporis, dolore.</h6>
-            <h6>Repeticiones: </h6>
-            <h6>Set: </h6>
-          </div>
-        </div>
-      </div>
+      {
+        favorito.map((item, index) => {
+          return (
+            <>
+              {
+                item.id_dieta != null ?
+                  (
+                    <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
+                      <div className="justify-content-between row">
+                        <div className="col-11 col-md-6 col-lg-6">
+                          <p>Nombre: {item.id_dieta[0].nombre}</p>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col col-lg col-md">
+                          <h6>Horario: {item.id_dieta[0].horario}</h6>
+                          <h6>Alimentos: <br /> {item.id_dieta[0].alimentos}</h6>
+                          <h6>Informacion nutricional: {item.id_dieta[0].infoNutricional}</h6>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                  :
+                  (
+                    <></>
+                  )
+              }
+            </>
+          )
+        })
+      }
     </>
   )
 }

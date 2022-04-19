@@ -17,7 +17,7 @@ export const entContentDef = [
     },
     {
         title: 'Pecho',
-        descripcion: '',
+        descripcion: 'Para fortalecer los músculos de tu pecho y hacerlos crecer, enfócate en ejercicios especiales para incrementar el tamaño de tus pectorales, utilizando las técnicas adecuadas y llevando una dieta saludable enfocada a hacer músculo.',
         path: '/rutinas/pecho',
         icon: <GiIcons.GiMuscularTorso></GiIcons.GiMuscularTorso>,
         cName: 'nav-text-dieta'
