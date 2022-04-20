@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import * as AiIcons from 'react-icons/ai'
-import { app } from '../../firebaseconfig'
-import { getAuth } from "firebase/auth"
 import axios from 'axios'
-import { usuarioLogged } from '../MetodosFirebase'
-// Ultima modificación Matthew Rocco 12/04/2022
-export default function CardEjercicio({ id, musculoObj, nombre, video, descripcion, repeticiones, set, index }) {
+import { usuarioLogged, findAdmin } from '../MetodosFirebase'
 
-    const idUser = usuarioLogged()
+// Ultima modificación Matthew Rocco 12/04/2022
+export default function CardEjercicio({ idUser, id, musculoObj, nombre, video, descripcion, repeticiones, set, index }) {
+
     const url = process.env.REACT_APP_BACKEND_URL + `favoritos/`
+
+
 
     const guardarFav = (e) => {
         e.preventDefault()
@@ -27,7 +27,6 @@ export default function CardEjercicio({ id, musculoObj, nombre, video, descripci
             console.log(error)
         })
     }
-
     return (
         <>
             <div key={index} className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
@@ -36,7 +35,15 @@ export default function CardEjercicio({ id, musculoObj, nombre, video, descripci
                         <p>Nombre: {nombre}</p>
                     </div>
                     <div className="col-1 col-lg-1 col-md-1">
-                        <button onClick={guardarFav} className='btn btn-sm btn-info bg-transparent border-0' ><AiIcons.AiOutlineStar style={{ 'width': '25px', 'height': '25px' }} /></button>
+                        {
+                            idUser !== 'No User' ?
+                                (
+                                    <button onClick={guardarFav} className='btn btn-sm btn-info bg-transparent border-0' ><AiIcons.AiOutlineStar style={{ 'width': '25px', 'height': '25px' }} /></button>
+                                ) :
+                                (
+                                    <></>
+                                )
+                        }
                     </div>
                 </div>
                 <div className="row">

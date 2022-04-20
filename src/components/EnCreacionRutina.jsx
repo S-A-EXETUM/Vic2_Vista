@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import CardEjercicio from './OtrosComponentes/CardEjercicio'
 import axios from 'axios'
 import { Spinner } from './OtrosComponentes/Spinner'
-
+import { usuarioLogged } from './MetodosFirebase'
 // Ultima modificación Matthew Rocco 12/04/2022
 export const EnCreacionRutina = ({ nombre, descripcion }) => {
-
+  const idUser = usuarioLogged()
   const url = process.env.REACT_APP_BACKEND_URL + `ejercicios/tipo/${nombre}`
   //const url = 'http://163e-186-21-192-20.ngrok.io/' + `ejercicios/tipo/${nombre}`
 
@@ -55,6 +55,7 @@ export const EnCreacionRutina = ({ nombre, descripcion }) => {
                         (<CardEjercicio
                           key={item.id}
                           id={item.id}
+                          idUser={idUser}
                           index={index}
                           nombre={item.nombre}
                           descripcion={item.descripcion}

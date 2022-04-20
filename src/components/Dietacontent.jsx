@@ -30,7 +30,7 @@ export const Dietacontent = [
     },
     {
         title: 'Definir',
-        descripcion: '',
+        descripcion: 'Entrenar de forma regular no basta para definir la musculatura, ya que esto, es el culmen de todo un proceso, que pasa no solamente por prestar atención al ejercicio, sino también por poner el foco en la alimentación. Para conseguir definir la musculatura habrá que realizar una alimentación adecuada que consiga definir los músculos, eliminando la grasa y aumentando su tamaño. Para ello, hay personas que toman suplementos, pero nuestro consejo es, sin duda, el de que optes por adoptar una dieta saludable.',
         path: '/dieta/definir',
         icon: <GiIcons.GiMeat></GiIcons.GiMeat>,
         cName: 'nav-text-dieta'

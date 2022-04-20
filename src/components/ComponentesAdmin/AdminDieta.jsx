@@ -1,6 +1,7 @@
 import React from 'react'
 import { BotonLateralMenu } from './BotonLateralMenu'
 import { FormularioAgregarDieta } from './FormularioAgregarDieta'
+import { FormularioBuscarDieta } from './FormularioBuscarDieta'
 
 export const AdminDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, setInfoNutricional, setFoto, setHorario }) => {
     return (
@@ -27,7 +28,7 @@ export const AdminDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, se
                                 setHorario={setHorario} />
                         </div>
                         <div className="tab-pane fade" id="nav-editar1" role="tabpanel" aria-labelledby="nav-editar1-tab">
-                            <h1>Hola</h1>
+                            <FormularioBuscarDieta />
                         </div>
                     </div>
                 </div>

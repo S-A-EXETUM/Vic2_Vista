@@ -15,29 +15,19 @@ import { Administrador } from './components/Administrador'
 import { entContentDef, entContentAde} from './components/Rucontent'
 import { Dietacontent } from './components/Dietacontent'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
-
+import { usuarioLogged, findAdmin } from './components/MetodosFirebase'
 // Ultima modificación Matthew Rocco 12/04/2022
 function App() {
   const [usuario, setUsuario] = useState(null)
   const user = getAuth()
-  const [admin, setAdmin] = useState(false)
-  useEffect(() => {
-    const getAdmins = async () => {
-      const { docs } = await getDocs(collection(db, "users"))
-      const datos = docs.map(item => ({ id: item.id, ...item.data() }))
-      for (let index = 0; index < datos.length; index++) {
-        if (datos[index].id == user.currentUser.uid) {
-          setAdmin(true)
-        }
-      }
-      // console.log('admin: ' + admin)
-    }
-    getAdmins()
-  })
+  const adm = findAdmin()
+
   useEffect(()=>{
     user.onAuthStateChanged((user)=>{
       if(user){
         setUsuario(user.email)
+      }else{
+        setUsuario(null)
       }
     })
   })
@@ -62,22 +52,22 @@ function App() {
             }
 
             {
-              entContentDef.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
+              entContentDef.map((item, index) => <Route key={index} path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              entContentAde.map((item, index) => <Route path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
+              entContentAde.map((item, index) => <Route key={index} path={item.path} element={<Entrenamiento nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              Dietacontent.map((item, index) => <Route path={item.path} element={<TipoDieta nombre={item.title} descripcion={item.descripcion} />}/>)
+              Dietacontent.map((item, index) => <Route key={index} path={item.path} element={<TipoDieta nombre={item.title} descripcion={item.descripcion} />}/>)
             }
 
             {
-              admin? 
+              adm !== 'No admin' && usuario !== null? 
               (<Route path='/administrador' element={<Administrador/>}/>)
               :
-              (<Route path='/administrador' element={<Login/>}/> )
+              (<Route path='/administrador' element={<Inicio/>}/> )
             }
 
           </Routes>

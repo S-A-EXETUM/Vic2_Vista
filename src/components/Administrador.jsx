@@ -76,7 +76,7 @@ export const Administrador = () => {
         <div className="pt-5 contenedor pb-5" style={{ 'width': '100%' }}>
             <div className='row container justify-content-center' style={{ 'margin': '0', }}>
                 <div className="card col-lg-7" style={{ "padding": "0" }}>
-                    <div class="card-header">
+                    <div className="card-header">
                         <div className="nav nav-tabs card-header-tabs" id="nav-tab" role="tablist">
                             <button className="nav-link active" id="nav-rutina-tab" data-bs-toggle="tab" data-bs-target="#nav-rutina" type="button" role="tab" aria-controls="nav-rutina" aria-selected="true">Rutina</button>
                             <button className="nav-link" id="nav-dieta-tab" data-bs-toggle="tab" data-bs-target="#nav-dieta" type="button" role="tab" aria-controls="nav-dieta" aria-selected="false">Dieta</button>

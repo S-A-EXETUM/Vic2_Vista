@@ -58,7 +58,7 @@ export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, se
                     <button onClick={funcion} className="btn btn-outline-dark btn-sm">Agregar</button>
                 </div>
                 {errorRutina ?
-                    (<div className='alert alert-danger mt-2' style={{ "padding": "3px", "padding-left": "10px" }}>
+                    (<div className='alert alert-danger mt-2' style={{ "padding": "3px", "paddingLeft": "10px" }}>
                         {errorRutina}
                     </div>)
                     :

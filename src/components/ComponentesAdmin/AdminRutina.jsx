@@ -1,6 +1,6 @@
 import React from 'react'
 import { FormularioAgregarRutina } from './FormularioAgregarRutina'
-import { FormularioBuscar } from './FormularioBuscar'
+import { FormularioBuscarRutina } from './FormularioBuscarRutina'
 
 export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina }) => {
 
@@ -30,7 +30,7 @@ export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, set
                                 errorRutina={errorRutina} />
                         </div>
                         <div className="tab-pane pe-3 fade" id="nav-editar" role="tabpanel" aria-labelledby="nav-editar-tab">
-                            <FormularioBuscar />
+                            <FormularioBuscarRutina />
                         </div>
                     </div>
                 </div>

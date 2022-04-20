@@ -77,10 +77,10 @@ const Login = () => {
     <div className="pt-5">
       <div className='row container justify-content-evenly mt-5 pt-5'>
         {/* Formulario de registro */}
-        <Formulario funcion={registro} id={"1"} setEmail={setEmail} setPass={setPass} titulo={"Registrarse"} tipo={null} error={errorR} />
+        <Formulario funcion={registro} setEmail={setEmail} setPass={setPass} titulo={"Registrarse"} tipo={null} error={errorR} />
 
         {/* Formulario de inicio de sesión */}
-        <Formulario titulo={"Iniciar Sesión"} id={"1"} funcion={iniciarSesion} setEmail={setEmail} setPass={setPass} tipo={"inicio"} error={errorL} />
+        <Formulario titulo={"Iniciar Sesión"} funcion={iniciarSesion} setEmail={setEmail} setPass={setPass} tipo={"inicio"} error={errorL} />
       </div>
 
     </div>

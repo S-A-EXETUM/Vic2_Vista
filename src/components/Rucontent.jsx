@@ -62,7 +62,7 @@ export const entContentAde = [
     },
     {
         title: 'Crossfit',
-        descripcion: '',
+        descripcion: 'CrossFit se define como un sistema de entrenamiento de fuerza y acondicionamiento basado en ejercicios funcionales constantemente variados realizados a una alta intensidad. Esto significa que nos valemos de una gran cantidad de ejercicios y disciplinas deportivas (gimnasia, halterofilia, carrera…).',
         path: '/rutinas/crossfit',
         icon: <GiIcons.GiJumpAcross></GiIcons.GiJumpAcross>,
         cName: 'nav-text-dieta'

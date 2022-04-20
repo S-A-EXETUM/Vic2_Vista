@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import CardDieta from './OtrosComponentes/CardDieta'
 import { Spinner } from './OtrosComponentes/Spinner'
-
+import { usuarioLogged } from './MetodosFirebase'
 // Ultima modificación Matthew Rocco y Diego Canelo 12/04/2022
 export const EnCreacion = ({ nombre, descripcion }) => {
+  const idUser = usuarioLogged()
   const url = process.env.REACT_APP_BACKEND_URL + `dietas/tipo/${nombre}`
   const [dieta, setDieta] = useState([])
 
@@ -21,7 +22,6 @@ export const EnCreacion = ({ nombre, descripcion }) => {
     }
     getDieta()
   }, [])
-
   return (<>
     <div className='row justify-content-center' style={{ "margin": "0" }}>
       <div className="text-center" style={{ "width": "700px" }}>
@@ -50,6 +50,7 @@ export const EnCreacion = ({ nombre, descripcion }) => {
                       (<div key={index}>
                         <CardDieta
                           key={item.id}
+                          idUser={idUser}
                           id={item.id}
                           index={index}
                           nombre={item.nombre}
