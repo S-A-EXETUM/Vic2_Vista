@@ -7,7 +7,7 @@ import { usuarioLogged } from './MetodosFirebase'
 export const EnCreacion = ({ nombre, descripcion }) => {
   const idUser = usuarioLogged()
   const url = process.env.REACT_APP_BACKEND_URL + `dietas/tipo/${nombre}`
-  const [dieta, setDieta] = useState([])
+  const [dieta, setDieta] = useState()
 
   useEffect(() => {
     const getDieta = () => {
@@ -16,12 +16,12 @@ export const EnCreacion = ({ nombre, descripcion }) => {
           const { data } = response
           setDieta(data)
         })
-        .catch(
-          setDieta(undefined)
-        )
+        .catch((e) => {
+          console.log(e)
+        })
     }
     getDieta()
-  }, [])
+  }, [dieta])
   return (<>
     <div className='row justify-content-center' style={{ "margin": "0" }}>
       <div className="text-center" style={{ "width": "700px" }}>
@@ -44,26 +44,30 @@ export const EnCreacion = ({ nombre, descripcion }) => {
           <div className="row justify-content-center" style={{ "margin": "0" }}>
             <div className="col-12">
               {dieta !== undefined ?
-                dieta.map((item, index) => {
-                  return (
-                    nombre === item.tipoDieta ?
-                      (<div key={index}>
-                        <CardDieta
-                          key={item.id}
-                          idUser={idUser}
-                          id={item.id}
-                          index={index}
-                          nombre={item.nombre}
-                          alimentos={item.alimentos}
-                          infoNutricional={item.infoNutricional}
-                          foto={item.foto}
-                          horario={item.horario}
-                        />
-                      </div>)
-                      :
-                      (<span></span>)
-                  )
-                })
+                (dieta.length !== 0 ?
+                  dieta.map((item, index) => {
+                    return (
+                      nombre === item.tipoDieta ?
+                        (<div key={index}>
+                          <CardDieta
+                            key={item.id}
+                            idUser={idUser}
+                            id={item.id}
+                            index={index}
+                            nombre={item.nombre}
+                            alimentos={item.alimentos}
+                            infoNutricional={item.infoNutricional}
+                            foto={item.foto}
+                            horario={item.horario}
+                          />
+                        </div>)
+                        :
+                        (<span></span>)
+                    )
+                  })
+                  :
+                  <h3 className='mt-2 text-center'>No hay dietas disponibles</h3>
+                )
                 :
                 (<Spinner />)
               }

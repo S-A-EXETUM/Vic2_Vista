@@ -20,9 +20,27 @@ export default function CardDieta({ id, idUser, nombre, alimentos, infoNutricion
             id_rutina,
             id_dieta
         }).then((resp) => {
-            console.log(resp)
+            Swal.fire({
+                title: "Favorito agregado con éxito",
+                icon: "success"
+            })
         }).catch((error) => {
-            console.log(error)
+            if (error.toJSON().status == 406) {
+                Swal.fire({
+                    title: "Error al agregar",
+                    html: `<p class="text-ligth">La dieta ya está agregada a favoritos<p>`,
+                    icon: "warning",
+                    color: "#fff"
+                })
+            } else {
+                Swal.fire({
+                    title: "Error al agregar",
+                    html: `No se pudo agregar a favoritos :(`,
+                    icon: "warning",
+                    color: "#fff"
+                })
+            }
+
         })
     }
 

@@ -3,9 +3,9 @@ import { BotonLateralMenu } from './BotonLateralMenu'
 import { FormularioAgregarDieta } from './FormularioAgregarDieta'
 import { FormularioBuscarDieta } from './FormularioBuscarDieta'
 
-export const AdminDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, setInfoNutricional, setFoto, setHorario }) => {
+export const AdminDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, setInfoNutricional, setFoto, setHorario, errorDieta }) => {
     return (
-        <div className="bg-opacity-25 pt-3 card shadow">
+        <div className="bg-opacity-25 pt-3">
             <div className='row'>
                 <div className='col-lg-2 col-md-2 col-6 '>
                     <ul>
@@ -25,7 +25,8 @@ export const AdminDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, se
                                 setAlimentos={setAlimentos}
                                 setInfoNutricional={setInfoNutricional}
                                 setFoto={setFoto}
-                                setHorario={setHorario} />
+                                setHorario={setHorario}
+                                errorDieta={errorDieta} />
                         </div>
                         <div className="tab-pane fade" id="nav-editar1" role="tabpanel" aria-labelledby="nav-editar1-tab">
                             <FormularioBuscarDieta />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, setInfoNutricional, setFoto, setHorario }) => {
+export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setAlimentos, setInfoNutricional, setFoto, setHorario, errorDieta }) => {
 
     return (
         <div className='bg-info bg-opacity-50 card card-body m-2'>
@@ -23,17 +23,17 @@ export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setA
                         <input
                             onChange={(e) => { setNombreD(e.target.value) }}
                             className="form-control"
-                            id="nombre"
+                            id="nombre-dieta"
                             type="text"
                             placeholder="Nombre"
                         />
                         <label htmlFor="nombre">Nombre</label>
                     </div>
                     <div className='form-floating mb-3'>
-                        <input
+                        <textarea
                             onChange={(e) => { setAlimentos(e.target.value) }}
                             className="form-control"
-                            id="alimentos"
+                            id="alimentos-dieta"
                             type="text"
                             placeholder="Alimento/s"
                         />
@@ -43,7 +43,7 @@ export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setA
                         <input
                             onChange={(e) => { setInfoNutricional(e.target.value) }}
                             className="form-control"
-                            id="infoNutricional"
+                            id="infoNutricional-dieta"
                             type="text"
                             placeholder="Información Nutricional"
                         />
@@ -53,7 +53,7 @@ export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setA
                         <input
                             onChange={(e) => { setFoto(e.target.value) }}
                             className="form-control"
-                            id="foto"
+                            id="foto-dieta"
                             type="text"
                             placeholder="URL Foto"
                         />
@@ -63,7 +63,7 @@ export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setA
                         <input
                             onChange={(e) => { setHorario(e.target.value) }}
                             className="form-control"
-                            id="horario"
+                            id="horario-dieta"
                             type="text"
                             placeholder="Horario"
                         />
@@ -74,6 +74,14 @@ export const FormularioAgregarDieta = ({ funcion, setTipoDieta, setNombreD, setA
                     <button onClick={funcion} className="btn btn-outline-dark btn-sm">Agregar</button>
                 </div>
             </form>
+            {
+                errorDieta !== '' ?
+                    (<div className='alert alert-danger mt-2' style={{ "padding": "3px", "paddingLeft": "10px" }}>
+                        {errorDieta}
+                    </div>)
+                    :
+                    (<span></span>)
+            }
         </div>
     )
 }

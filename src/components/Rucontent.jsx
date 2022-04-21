@@ -24,21 +24,21 @@ export const entContentDef = [
     },
     {
         title: 'Abdomen',
-        descripcion: '',
+        descripcion: 'El abdomen entrénalo como un músculo más. Hacer abdomen no puede limitarse a hacer unas planchas y unos crunchs al final de tu entrenamiento o el día que te acuerdas. Planifica tu entreno con detalle. Respeta el descanso. Como cualquier otro músculo, las abdominales necesitan un mínimo de dos días para recuperarse y crecer.',
         path: '/rutinas/abdomen',
         icon: <GiIcons.GiMuscularTorso></GiIcons.GiMuscularTorso>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Piernas',
-        descripcion: '',
+        descripcion: 'Antes de empezar con los ejercicios para ganar masa múscular en las piernas es imprescindible hacer algunos estiramientos para entrar en calor y preparar el cuerpo. Puedes empezar con algo suave, como trotar durante 5 minutos para que la sangre irrigue bien los músculos y estos logren su máxima potencia durante el entrenamiento.',
         path: '/rutinas/piernas',
         icon: <GiIcons.GiLeg></GiIcons.GiLeg>,
         cName: 'nav-text-dieta'
     },
     {
         title: 'Espalda',
-        descripcion: '',
+        descripcion: 'Tonificar los músculos de la espalda y nuestro cuerpo en general no es algo difícil siempre y cuando contemos con los medios para conseguir nuestros objetivos e ir progresando paulatinamente. Realizar una actividad física regularmente te ayuda a prevenir los imprevistos que pueden surgir por nuestro modo de vida sedentario, así como el riesgo de aparición de una enfermedad cardiovascular. Esto significa que si adoptamos una buena postura corporal y una higiene de vida sanitaria, vamos a mejorar tanto nuestro estado mental como de salud.',
         path: '/rutinas/espalda',
         icon: <GiIcons.GiShoulderArmor></GiIcons.GiShoulderArmor>,
         cName: 'nav-text-dieta'

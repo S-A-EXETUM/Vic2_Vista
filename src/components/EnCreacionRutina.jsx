@@ -9,7 +9,7 @@ export const EnCreacionRutina = ({ nombre, descripcion }) => {
   const url = process.env.REACT_APP_BACKEND_URL + `ejercicios/tipo/${nombre}`
   //const url = 'http://163e-186-21-192-20.ngrok.io/' + `ejercicios/tipo/${nombre}`
 
-  const [rutina, setRutina] = useState([])
+  const [rutina, setRutina] = useState()
 
   useEffect(() => {
     const getRutina = () => {
@@ -18,12 +18,12 @@ export const EnCreacionRutina = ({ nombre, descripcion }) => {
           const { data } = response
           setRutina(data)
         })
-        .catch(
-          setRutina(undefined)
-        )
+        .catch((e) => {
+          console.log(e)
+        })
     }
     getRutina()
-  }, [])
+  }, [rutina])
 
   return (
     <>
@@ -49,25 +49,29 @@ export const EnCreacionRutina = ({ nombre, descripcion }) => {
             <div className="row justify-content-center" style={{ "margin": "0" }}>
               <div className="col-12">
                 {rutina !== undefined ?
-                  rutina.map((item, index) => {
-                    return (
-                      nombre === item.pCuerpo ?
-                        (<CardEjercicio
-                          key={item.id}
-                          id={item.id}
-                          idUser={idUser}
-                          index={index}
-                          nombre={item.nombre}
-                          descripcion={item.descripcion}
-                          repeticiones={item.repeticiones}
-                          set={item.set}
-                          video={item.video}
-                          musculoObj={item.musculoObj}
-                        />)
-                        :
-                        (<></>)
-                    )
-                  })
+                  (rutina.length !== 0 ?
+                    rutina.map((item, index) => {
+                      return (
+                        nombre === item.pCuerpo ?
+                          (<CardEjercicio
+                            key={item.id}
+                            id={item.id}
+                            idUser={idUser}
+                            index={index}
+                            nombre={item.nombre}
+                            descripcion={item.descripcion}
+                            repeticiones={item.repeticiones}
+                            set={item.set}
+                            video={item.video}
+                            musculoObj={item.musculoObj}
+                          />)
+                          :
+                          (<></>)
+                      )
+                    })
+                    :
+                    <h3 className='mt-2 text-center'>No hay ejercicios disponibles</h3>
+                  )
                   :
                   (<Spinner />)
                 }

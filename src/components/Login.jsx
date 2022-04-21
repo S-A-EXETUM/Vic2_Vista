@@ -25,14 +25,21 @@ const Login = () => {
         navegacion('/cuenta')
         // ...
       }).catch(e => {
-        if (e == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+        console.log(e.code)
+        if (e.code == "auth/invalid-email") {
           setErrorR('Correo inválido')
         }
-        else if (e == "FirebaseError: Firebase: Error (auth/internal-error).") {
+        else if (e.code == "auth/internal-error") {
           setErrorR('Credenciales incorrectas')
         }
-        else if (e == "FirebaseError: Firebase: Error (auth/wrong-password).") {
-          setErrorR('Credenciales incorrectas')
+        else if (e.code == "auth/weak-password") {
+          setErrorR('contraseña debe tener por lo menos 6 caracteres!')
+        }
+        else if (e.code == "auth/missing-email") {
+          setErrorR('Debe ingresar un correo electrónico')
+        }
+        else if (e.code == "auth/email-already-in-use") {
+          setErrorR('Cuenta ya registrada')
         }
         else {
           setErrorR(e)
@@ -54,14 +61,18 @@ const Login = () => {
         navegacion('/cuenta')
         // ...
       }).catch(e => {
-        if (e == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+        console.log(e.code)
+        if (e.code == "auth/invalid-email") {
           setErrorL('Correo inválido')
         }
-        else if (e == "FirebaseError: Firebase: Error (auth/internal-error).") {
+        else if (e.code == "auth/internal-error") {
           setErrorL('Credenciales incorrectas')
         }
-        else if (e == "FirebaseError: Firebase: Error (auth/wrong-password).") {
+        else if (e.code == "auth/wrong-password") {
           setErrorL('Credenciales incorrectas')
+        }
+        else if (e.code == "auth/user-not-found") {
+          setErrorL('Usuario no encontrado')
         }
         else {
           setErrorL(e)

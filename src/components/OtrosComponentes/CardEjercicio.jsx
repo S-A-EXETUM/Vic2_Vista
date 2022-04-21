@@ -22,9 +22,26 @@ export default function CardEjercicio({ idUser, id, musculoObj, nombre, video, d
             id_rutina,
             id_dieta
         }).then((resp) => {
-            console.log(resp)
+            Swal.fire({
+                title: "Favorito agregado con éxito",
+                icon: "success"
+            })
         }).catch((error) => {
-            console.log(error)
+            if (error.toJSON().status == 406) {
+                Swal.fire({
+                    title: "Error al agregar",
+                    html: `<p class="text-ligth">Este ejercicio ya fue agregado a favoritos<p>`,
+                    icon: "warning",
+                    color: "#fff"
+                })
+            } else {
+                Swal.fire({
+                    title: "Error al agregar",
+                    html: `No se pudo agregar a favoritos :(`,
+                    icon: "warning",
+                    color: "#fff"
+                })
+            }
         })
     }
     return (
@@ -55,7 +72,7 @@ export default function CardEjercicio({ idUser, id, musculoObj, nombre, video, d
                     <div className="col col-lg col-md">
                         <h6>Músculo: {musculoObj}</h6>
                         <h6>Descripción: <br /> {descripcion}</h6>
-                        <h6>Repeticiones: {repeticiones}</h6>
+                        <h6>Cantidad ejercicios: {repeticiones}</h6>
                         <h6>Set: {set}</h6>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { AdminDieta } from './ComponentesAdmin/AdminDieta'
 import { AdminRutina } from './ComponentesAdmin/AdminRutina'
@@ -9,6 +9,7 @@ export const Administrador = () => {
     const [errorRutina, setErrorRutina] = useState('')
     const [errorDieta, setErrorDieta] = useState('')
 
+    const [idRutina, setIdRutina] = useState('')
     const [pCuerpo, setPCuerpo] = useState('')
     const [musculoObj, setMusculoObj] = useState('')
     const [nombre, setNombre] = useState('')
@@ -16,6 +17,10 @@ export const Administrador = () => {
     const [descripcion, setDescripcion] = useState('')
     const [repeticiones, setRepeticiones] = useState('')
     const [set, setSet] = useState('')
+
+    useEffect(() => {
+
+    }, [pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set])
 
     const guardarRutina = (e) => {
         e.preventDefault()
@@ -35,11 +40,59 @@ export const Administrador = () => {
                 musculoObj: musculoObj,
                 set: set
             }).then((resp) => {
-                console.log(resp)
+                Swal.fire({
+                    title: "Se ha agregado correctamente",
+                    icon: "info",
+                    color: "#fff"
+                })
+                setPCuerpo(''); setMusculoObj('')
+                setNombre(''); setVideo(''); setDescripcion('')
+                setRepeticiones(''); setSet('')
+                document.querySelector('#musculoObj').value = ''
+                document.querySelector('#nombre-rutina').value = ''
+                document.querySelector('#video-rutina').value = ''
+                document.querySelector('#descripcion-rutina').value = ''
+                document.querySelector('#repeticiones').value = ''
+                document.querySelector('#floatingSet').value = ''
             }).catch((error) => {
-                console.log(error)
+                Swal.fire({
+                    title: "Ocurrió un error al agregar",
+                    icon: "warning",
+                    color: "#fff"
+                })
             })
         }
+    }
+
+    const editar = (e) => {
+        e.preventDefault()
+        axios.put(url + `ejercicios/${idRutina}`, {
+            pCuerpo: pCuerpo,
+            nombre: nombre,
+            repeticiones: repeticiones,
+            video: video,
+            descripcion: descripcion,
+            musculoObj: musculoObj,
+            set: set
+        }).then((resp) => {
+            Swal.fire({
+                title: "Se ha modificado correctamente",
+                icon: "info",
+                color: "#fff"
+            })
+            document.querySelector('#contenido-form-editar').classList.add('d-none')
+            document.querySelector('#card-contenido-rutina').classList.remove('d-none')
+            document.querySelector('#nav-agregar-tab').disabled = false
+            setPCuerpo(''); setMusculoObj('')
+            setNombre(''); setVideo(''); setDescripcion('')
+            setRepeticiones(''); setSet('')
+        }).catch((error) => {
+            Swal.fire({
+                title: "Ocurrió un error al modificar",
+                icon: "warning",
+                color: "#fff"
+            })
+        })
     }
 
     const [tipoDieta, setTipoDieta] = useState('')
@@ -66,8 +119,25 @@ export const Administrador = () => {
                 horario: horario
             }).then((resp) => {
                 console.log(resp)
+                Swal.fire({
+                    title: "Se ha agregado correctamente",
+                    icon: "info",
+                    color: "#fff"
+                })
+                setTipoDieta(''); setNombreD('')
+                setAlimentos(''); setInfoNutricional('')
+                setFoto(''); setHorario('')
+                document.querySelector('#nombre-dieta').value = ''
+                document.querySelector('#alimentos-dieta').value = ''
+                document.querySelector('#infoNutricional-dieta').value = ''
+                document.querySelector('#foto-dieta').value = ''
+                document.querySelector('#horario-dieta').value = ''
             }).catch((error) => {
-                console.log(error)
+                Swal.fire({
+                    title: "Ocurrió un error al agregar",
+                    icon: "warning",
+                    color: "#fff"
+                })
             })
         }
     }
@@ -87,13 +157,22 @@ export const Administrador = () => {
                             <div className="tab-pane fade active show" id="nav-rutina" role="tabpanel" aria-labelledby="nav-rutina-tab">
                                 <AdminRutina
                                     funcion={guardarRutina}
+                                    funcionEditar={editar}
                                     setPCuerpo={setPCuerpo}
                                     setMusculoObj={setMusculoObj}
                                     setNombre={setNombre}
+                                    idRutina={idRutina}
+                                    pCuerpo={pCuerpo}
+                                    musculoObj={musculoObj}
+                                    nombre={nombre} video={video}
+                                    descripcion={descripcion}
+                                    repeticiones={repeticiones}
+                                    set={set}
                                     setVideo={setVideo}
                                     setDescripcion={setDescripcion}
                                     setRepeticiones={setRepeticiones}
                                     setSet={setSet}
+                                    setIdRutina={setIdRutina}
                                     errorRutina={errorRutina} />
                             </div>
                             <div className="tab-pane fade" id="nav-dieta" role="tabpanel" aria-labelledby="nav-dieta-tab">
@@ -103,7 +182,8 @@ export const Administrador = () => {
                                     setAlimentos={setAlimentos}
                                     setInfoNutricional={setInfoNutricional}
                                     setFoto={setFoto}
-                                    setHorario={setHorario} />
+                                    setHorario={setHorario}
+                                    errorDieta={errorDieta} />
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 // import Swal from '@sweetalert2/theme-dark'
 import { usuarioLogged, findAdmin } from './MetodosFirebase'
+import { Spinner } from './OtrosComponentes/Spinner';
 // Ultima modificación Constanza Castillo 12/04/2022
 const Cuenta = () => {
   const navegacion = useNavigate();
@@ -78,7 +79,7 @@ const Cuenta = () => {
         <div className='row'>
           <div className="col">
             <div className="mt-3 ms-5 me-5">
-              <div className="card bg-black bg-opacity-10 contenedor" style={{ "height": "65%", "margin": "inherit" }}>
+              <div className="card bg-black bg-opacity-10 contenedor" style={{ 'width': "70%", "height": "65%", "margin": "inherit" }}>
                 <div className="row justify-content-center" style={{ "margin": "0" }}>
                   <div className="col-12 me-5">
                     <Cardsv />
@@ -97,9 +98,7 @@ const Cuenta = () => {
 const Cardsv = () => {
   const user = getAuth()
   const idUser = user.currentUser.uid
-  const [favorito, setFavorito] = useState([])
-  // const [id_rutina, setRutina] = useState(null)
-  // const [id_dieta, setDieta] = useState(null)
+  const [favorito, setFavorito] = useState()
 
   const url = process.env.REACT_APP_BACKEND_URL + `favoritos/`
 
@@ -123,8 +122,8 @@ const Cardsv = () => {
       .then((result) => {
         console.log(result)
         Swal.fire({
-          title: 'funca',
-          icon: 'success'
+          title: 'Favorito eliminado con éxito',
+          icon: 'info'
         })
       })
       .catch((error) => {
@@ -134,83 +133,94 @@ const Cardsv = () => {
 
   return (
     <>
-      {
-        favorito.map((item, index) => {
-          return (
-            <div key={index}>
-              {
-                item.id_rutina != null ?
-                  (
-                    <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
-                      <div className="justify-content-between row">
-                        <div className="col-11 col-md-6 col-lg-6">
-                          <p>Nombre: {item.id_rutina[0].nombre}</p>
+      {favorito !== undefined ?
+        (favorito.length !== 0 ?
+          favorito.map((item, index) => {
+            return (
+              <div key={index}>
+                {
+                  item.id_rutina != null ?
+                    (
+                      <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
+                        <div className="justify-content-between row">
+                          <div className="col-11 col-md-6 col-lg-6">
+                            <p>Nombre: {item.id_rutina[0].nombre}</p>
+                          </div>
+                          <div className='col col-md col-lg text-end'>
+                            <button onClick={() => { borrarFav(item.id) }} className='btn btn-sm btn-info bg-transparent border-0' ><BootstrapIcons.BsFillTrashFill style={{ 'width': '25px', 'height': '25px' }} /></button>
+                          </div>
                         </div>
-                        <div className='col col-md col-lg text-end'>
-                          <button onClick={() => { borrarFav(item.id) }} className='btn btn-sm btn-info bg-transparent border-0' ><BootstrapIcons.BsFillTrashFill style={{ 'width': '25px', 'height': '25px' }} /></button>
+                        <div className="row">
+                          <div className="col-12 col-lg-7 col-md-6">
+                            <iframe
+                              src={item.id_rutina[0].video} style={{ 'height': '300px', 'width': '100%' }} frameBorder="0" allowFullScreen>
+                            </iframe>
+                          </div>
+                          <div className="col col-lg col-md">
+                            <h6>Músculo: {item.id_rutina[0].musculoObj}</h6>
+                            <h6>Descripción: <br /> {item.id_rutina[0].descripcion}</h6>
+                            <h6>Cantidad ejercicios: {item.id_rutina[0].repeticiones}</h6>
+                            <h6>Set: {item.id_rutina[0].set}</h6>
+                          </div>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col-12 col-lg-7 col-md-6">
-                          <iframe
-                            src={item.id_rutina[0].video} style={{ 'height': '300px', 'width': '100%' }} frameBorder="0" allowFullScreen>
-                          </iframe>
-                        </div>
-                        <div className="col col-lg col-md">
-                          <h6>Músculo: {item.id_rutina[0].musculoObj}</h6>
-                          <h6>Descripción: <br /> {item.id_rutina[0].descripcion}</h6>
-                          <h6>Repeticiones: {item.id_rutina[0].repeticiones}</h6>
-                          <h6>Set: {item.id_rutina[0].set}</h6>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                  :
-                  (
-                    <></>
-                  )
-              }
-            </div>
-          )
-        })
+                    )
+                    :
+                    (
+                      <></>
+                    )
+                }
+              </div>
+            )
+          })
+          :
+          <h3 className='mt-2 text-center'>No a agregado favoritos</h3>
+        )
+        :
+        <div className='mt-2 text-center'>
+          <Spinner />
+        </div>
       }
 
       {
-        favorito.map((item, index) => {
-          return (
-            <div key={index}>
-              {
-                item.id_dieta != null ?
-                  (
-                    <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
-                      <div className="justify-content-between row">
-                        <div className="col-11 col-md-6 col-lg-6">
-                          <p>Nombre: {item.id_dieta[0].nombre}</p>
+        favorito !== undefined ?
+          favorito.map((item, index) => {
+            return (
+              <div key={index}>
+                {
+                  item.id_dieta != null ?
+                    (
+                      <div className="bg-opacity-25 bg-white border-1 border-light card card-body m-5">
+                        <div className="justify-content-between row">
+                          <div className="col-11 col-md-6 col-lg-6">
+                            <p>Nombre: {item.id_dieta[0].nombre}</p>
+                          </div>
+                          <div className='col col-md col-lg text-end'>
+                            <button onClick={() => { borrarFav(item.id) }} className='btn btn-sm btn-info bg-transparent border-0' ><BootstrapIcons.BsFillTrashFill style={{ 'width': '25px', 'height': '25px' }} /></button>
+                          </div>
                         </div>
-                        <div className='col col-md col-lg text-end'>
-                          <button onClick={() => { borrarFav(item.id) }} className='btn btn-sm btn-info bg-transparent border-0' ><BootstrapIcons.BsFillTrashFill style={{ 'width': '25px', 'height': '25px' }} /></button>
+                        <div className="row">
+                          <div className="col col-lg col-md">
+                            <h6>Horario: {item.id_dieta[0].horario}</h6>
+                            <h6>Alimentos: <br /> {item.id_dieta[0].alimentos}</h6>
+                            <h6>Informacion nutricional: {item.id_dieta[0].infoNutricional}</h6>
+                          </div>
+                          <div className="col-12 col-lg-7 col-md-6">
+                            <img src={item.id_dieta[0].foto} alt="Imagen" style={{ 'width': '60%' }} />
+                          </div>
                         </div>
                       </div>
-                      <div className="row">
-                        <div className="col col-lg col-md">
-                          <h6>Horario: {item.id_dieta[0].horario}</h6>
-                          <h6>Alimentos: <br /> {item.id_dieta[0].alimentos}</h6>
-                          <h6>Informacion nutricional: {item.id_dieta[0].infoNutricional}</h6>
-                        </div>
-                        <div className="col-12 col-lg-7 col-md-6">
-                          <img src={item.id_dieta[0].foto} alt="Imagen" style={{ 'width': '60%' }} />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                  :
-                  (
-                    <></>
-                  )
-              }
-            </div>
-          )
-        })
+                    )
+                    :
+                    (
+                      <></>
+                    )
+                }
+              </div>
+            )
+          })
+          :
+          <></>
       }
     </>
   )

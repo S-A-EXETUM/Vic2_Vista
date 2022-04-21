@@ -2,7 +2,7 @@ import React from 'react'
 import { FormularioAgregarRutina } from './FormularioAgregarRutina'
 import { FormularioBuscarRutina } from './FormularioBuscarRutina'
 
-export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina }) => {
+export const AdminRutina = ({ setIdRutina, funcionEditar, funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
 
     return (
         <div className="bg-opacity-25 pt-3">
@@ -19,10 +19,12 @@ export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, set
                     <div className="tab-content pe-3" id="nav2-tabContent">
                         <div className="tab-pane fade active show" id="nav-agregar" role="tabpanel" aria-labelledby="nav-agregar-tab">
                             <FormularioAgregarRutina
+                                nombreForm="Añadir"
                                 funcion={funcion}
                                 setPCuerpo={setPCuerpo}
                                 setMusculoObj={setMusculoObj}
                                 setNombre={setNombre}
+                                pCuerpo={pCuerpo} musculoObj={musculoObj} nombre={nombre} video={video} descripcion={descripcion} repeticiones={repeticiones} set={set}
                                 setVideo={setVideo}
                                 setDescripcion={setDescripcion}
                                 setRepeticiones={setRepeticiones}
@@ -30,7 +32,19 @@ export const AdminRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, set
                                 errorRutina={errorRutina} />
                         </div>
                         <div className="tab-pane pe-3 fade" id="nav-editar" role="tabpanel" aria-labelledby="nav-editar-tab">
-                            <FormularioBuscarRutina />
+                            <FormularioBuscarRutina
+                                setIdRutina={setIdRutina}
+                                funcionEditar={funcionEditar}
+                                setPCuerpo={setPCuerpo}
+                                setMusculoObj={setMusculoObj}
+                                setNombre={setNombre}
+                                pCuerpo={pCuerpo} musculoObj={musculoObj} nombre={nombre} video={video} descripcion={descripcion} repeticiones={repeticiones} set={set}
+                                setVideo={setVideo}
+                                setDescripcion={setDescripcion}
+                                setRepeticiones={setRepeticiones}
+                                setSet={setSet}
+                                errorRutina={errorRutina}
+                            />
                         </div>
                     </div>
                 </div>
