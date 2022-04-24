@@ -17,32 +17,45 @@ export default function CardEjercicio({ idUser, id, musculoObj, nombre, video, d
         const id_usuario = idUser
         const id_dieta = null
 
-        axios.post(url, {
-            id_usuario,
-            id_rutina,
-            id_dieta
-        }).then((resp) => {
-            Swal.fire({
-                title: "Favorito agregado con éxito",
-                icon: "success"
-            })
-        }).catch((error) => {
-            if (error.toJSON().status == 406) {
-                Swal.fire({
-                    title: "Error al agregar",
-                    html: `<p class="text-ligth">Este ejercicio ya fue agregado a favoritos<p>`,
-                    icon: "warning",
-                    color: "#fff"
-                })
-            } else {
-                Swal.fire({
-                    title: "Error al agregar",
-                    html: `No se pudo agregar a favoritos :(`,
-                    icon: "warning",
-                    color: "#fff"
+        Swal.fire({
+            title: "¿Desea agregar esta rutina a sus favoritos?",
+            showCancelButton: true,
+            confirmButtonText: 'Sí',
+            confirmButtonColor: '#6625c2',
+            cancelButtonText: 'No',
+            icon: "question",
+            color: "#fff"
+        }).then(result => {
+            if (result.isConfirmed) {
+                axios.post(url, {
+                    id_usuario,
+                    id_rutina,
+                    id_dieta
+                }).then((resp) => {
+                    Swal.fire({
+                        title: "Favorito agregado con éxito",
+                        icon: "success"
+                    })
+                }).catch((error) => {
+                    if (error.toJSON().status == 406) {
+                        Swal.fire({
+                            title: "Error al agregar",
+                            html: `<p class="text-ligth">Este ejercicio ya fue agregado a favoritos<p>`,
+                            icon: "warning",
+                            color: "#fff"
+                        })
+                    } else {
+                        Swal.fire({
+                            title: "Error al agregar",
+                            html: `No se pudo agregar a favoritos :(`,
+                            icon: "warning",
+                            color: "#fff"
+                        })
+                    }
                 })
             }
         })
+
     }
     return (
         <>

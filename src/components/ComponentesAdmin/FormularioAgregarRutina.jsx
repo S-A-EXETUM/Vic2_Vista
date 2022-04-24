@@ -38,7 +38,7 @@ export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, se
                         <label htmlFor="video">Url Video</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <textarea type="text" value={descripcion} onChange={(e) => { setDescripcion(e.target.value) }} className="form-control" id="descripcion-rutina" placeholder='descripcion' />
+                        <textarea type="text" value={descripcion} onChange={(e) => { setDescripcion(e.target.value) }} style={{ 'height': '100px' }} className="form-control" id="descripcion-rutina" placeholder='descripcion' />
                         <label htmlFor="descripcion">Descripción</label>
                     </div>
                     <div className='row'>
@@ -74,6 +74,11 @@ export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, se
                                 document.querySelector('#descripcion-rutina').value = ''
                                 document.querySelector('#repeticiones').value = ''
                                 document.querySelector('#floatingSet').value = ''
+                                Swal.fire({
+                                    title: "No se modificó",
+                                    icon: "warning",
+                                    color: "#fff"
+                                })
                             }} className="btn btn-outline-dark ms-2 btn-sm">Cancelar Edición</button>)
                             :
                             (< ></>)

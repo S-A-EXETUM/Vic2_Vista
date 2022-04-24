@@ -11,7 +11,7 @@ export const AdminRutina = ({ idRutina, setIdRutina, funcion, setPCuerpo, setMus
                     <ul>
                         <div className="nav mt-2" id="nav2-tab" role="tablist" style={{ "listStyle": "none" }}>
                             <button className="mb-2 btn btn-info bg-opacity-10" id="nav-agregar-tab" data-bs-toggle="tab" data-bs-target="#nav-agregar" type="button" role="tab" aria-controls="nav-agregar" aria-selected="true">➕</button>
-                            <button className="mb-2 btn btn-info bg-opacity-10" id="nav-editar-tab mb-2 border-0" data-bs-toggle="tab" data-bs-target="#nav-editar" type="button" role="tab" aria-controls="nav-editar" aria-selected="false">🔍</button>
+                            <button className="mb-2 btn btn-info bg-opacity-10" id="nav-editar-tab" data-bs-toggle="tab" data-bs-target="#nav-editar" type="button" role="tab" aria-controls="nav-editar" aria-selected="false">🔍</button>
                         </div>
                     </ul>
                 </div>

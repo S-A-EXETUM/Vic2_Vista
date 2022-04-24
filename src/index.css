@@ -65,12 +65,12 @@
     color: #9fffac;
 }
 
-.button-ligth-green-outline {
-    color: #f8f9fa;
-    border-color: #f8f9fa;
+.button-green-outline {
+    color: #9fffac;
+    border-color: #9fffac;
 }
 
-.button-light-green-outline:hover {
+.button-green-outline:hover {
     color: #1D3E53;
     background-color: #9fffac;
     border-color: #9fffac;

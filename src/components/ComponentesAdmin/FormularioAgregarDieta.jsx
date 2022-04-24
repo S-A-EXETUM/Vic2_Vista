@@ -37,6 +37,7 @@ export const FormularioAgregarDieta = ({ nombreForm, funcion, setTipoDieta, setN
                             className="form-control"
                             id="alimentos-dieta"
                             type="text"
+                            style={{ 'height': '100px' }}
                             value={alimentos}
                             placeholder="Alimento/s"
                         />
@@ -94,6 +95,11 @@ export const FormularioAgregarDieta = ({ nombreForm, funcion, setTipoDieta, setN
                                 document.querySelector('#descripcion-rutina').value = ''
                                 document.querySelector('#repeticiones').value = ''
                                 document.querySelector('#floatingSet').value = ''
+                                Swal.fire({
+                                    title: "No se modificó",
+                                    icon: "warning",
+                                    color: "#fff"
+                                })
                                 let select_tipoD = document.querySelector('#tipoDieta-Editar')
                                 select_tipoD.value = "0"
 

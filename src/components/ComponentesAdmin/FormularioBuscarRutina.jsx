@@ -7,8 +7,8 @@ import axios from 'axios'
 
 export const FormularioBuscarRutina = ({ idRutina, setIdRutina, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
 
-    const [first, setFirst] = useState(0)
-    const [ejercicioUse, setEjercicioUse] = useState({})
+    // const [first, setFirst] = useState(0)
+    // const [ejercicioUse, setEjercicioUse] = useState({})
 
     const [busquedaSelect, setBusquedaSelect] = useState()
     const [busquedaNombre, setBusquedaNombre] = useState()
