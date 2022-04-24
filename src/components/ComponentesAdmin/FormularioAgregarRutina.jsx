@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react'
 
 export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, nombreForm, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
 
+    let idSelectR = 'tipoRutina-' + nombreForm
+
     return (
         <div className='bg-info bg-opacity-50 card-body m-2'>
             <form>
                 <div>
-                    <h3 className='text-center'>{nombreForm}</h3>
+                    <h3 className='text-center'>{nombreForm}💪</h3>
                 </div>
                 <div className="mb-4 mt-4">
                     <div className='form-floating mb-3'>
-                        <select className="form-select boder-0" id='pCuerpo' onChange={(e) => { setPCuerpo(e.target.value) }} aria-label="Default select example">
+                        <select className="form-select boder-0" id={idSelectR} onChange={(e) => { setPCuerpo(e.target.value) }} aria-label="Default select example">
                             <option value='0' >-- Seleccionar --</option>
                             <option value="Brazos">Brazos</option>
                             <option value="Pecho">Pecho</option>
@@ -24,12 +26,12 @@ export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, se
                         <label className="form-label me-5">Ejercicio para</label>
                     </div>
                     <div className="form-floating mb-3">
-                        <input type="text" name="musculoObj" value={musculoObj} onChange={(e) => { setMusculoObj(e.target.value) }} className="form-control" id="musculoObj" placeholder='musculoObj' />
-                        <label htmlFor="musculoObj">Músculo/s Objetivo</label>
-                    </div>
-                    <div className="form-floating mb-3">
                         <input type="text" value={nombre} onChange={(e) => { setNombre(e.target.value) }} className="form-control" id="nombre-rutina" placeholder='nombre' />
                         <label htmlFor="nombre">Nombre</label>
+                    </div>
+                    <div className="form-floating mb-3">
+                        <input type="text" name="musculoObj" value={musculoObj} onChange={(e) => { setMusculoObj(e.target.value) }} className="form-control" id="musculoObj" placeholder='musculoObj' />
+                        <label htmlFor="musculoObj">Músculo/s Objetivo</label>
                     </div>
                     <div className="form-floating mb-3">
                         <input type="text" value={video} onChange={(e) => { setVideo(e.target.value) }} className="form-control" id="video-rutina" placeholder='video' />
@@ -72,7 +74,7 @@ export const FormularioAgregarRutina = ({ funcion, setPCuerpo, setMusculoObj, se
                                 document.querySelector('#descripcion-rutina').value = ''
                                 document.querySelector('#repeticiones').value = ''
                                 document.querySelector('#floatingSet').value = ''
-                            }} className="btn btn-outline-dark btn-sm">Cancelar Edición</button>)
+                            }} className="btn btn-outline-dark ms-2 btn-sm">Cancelar Edición</button>)
                             :
                             (< ></>)
                     }

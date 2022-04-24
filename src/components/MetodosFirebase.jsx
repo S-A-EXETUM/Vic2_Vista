@@ -52,7 +52,7 @@ export const usuarioLogged = () => {
 }
 
 export const findAdmin = () => {
-    const [admin, setAdmin] = useState('')
+    const [admin, setAdmin] = useState('No admin')
     const idUser = usuarioLogged()
 
     useEffect(() => {

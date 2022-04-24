@@ -21,7 +21,7 @@ export const EnCreacion = ({ nombre, descripcion }) => {
         })
     }
     getDieta()
-  }, [dieta])
+  }, [])
   return (<>
     <div className='row justify-content-center' style={{ "margin": "0" }}>
       <div className="text-center" style={{ "width": "700px" }}>

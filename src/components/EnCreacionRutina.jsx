@@ -23,7 +23,7 @@ export const EnCreacionRutina = ({ nombre, descripcion }) => {
         })
     }
     getRutina()
-  }, [rutina])
+  }, [])
 
   return (
     <>

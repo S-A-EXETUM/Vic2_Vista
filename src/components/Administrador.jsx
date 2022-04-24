@@ -18,9 +18,7 @@ export const Administrador = () => {
     const [repeticiones, setRepeticiones] = useState('')
     const [set, setSet] = useState('')
 
-    useEffect(() => {
 
-    }, [pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set])
 
     const guardarRutina = (e) => {
         e.preventDefault()
@@ -48,6 +46,7 @@ export const Administrador = () => {
                 setPCuerpo(''); setMusculoObj('')
                 setNombre(''); setVideo(''); setDescripcion('')
                 setRepeticiones(''); setSet('')
+                document.querySelector('#tipoRutina-Añadir').value = '0'
                 document.querySelector('#musculoObj').value = ''
                 document.querySelector('#nombre-rutina').value = ''
                 document.querySelector('#video-rutina').value = ''
@@ -64,37 +63,7 @@ export const Administrador = () => {
         }
     }
 
-    const editar = (e) => {
-        e.preventDefault()
-        axios.put(url + `ejercicios/${idRutina}`, {
-            pCuerpo: pCuerpo,
-            nombre: nombre,
-            repeticiones: repeticiones,
-            video: video,
-            descripcion: descripcion,
-            musculoObj: musculoObj,
-            set: set
-        }).then((resp) => {
-            Swal.fire({
-                title: "Se ha modificado correctamente",
-                icon: "info",
-                color: "#fff"
-            })
-            document.querySelector('#contenido-form-editar').classList.add('d-none')
-            document.querySelector('#card-contenido-rutina').classList.remove('d-none')
-            document.querySelector('#nav-agregar-tab').disabled = false
-            setPCuerpo(''); setMusculoObj('')
-            setNombre(''); setVideo(''); setDescripcion('')
-            setRepeticiones(''); setSet('')
-        }).catch((error) => {
-            Swal.fire({
-                title: "Ocurrió un error al modificar",
-                icon: "warning",
-                color: "#fff"
-            })
-        })
-    }
-
+    const [idDieta, setIdDieta] = useState('')
     const [tipoDieta, setTipoDieta] = useState('')
     const [nombreD, setNombreD] = useState('')
     const [alimentos, setAlimentos] = useState('')
@@ -127,6 +96,7 @@ export const Administrador = () => {
                 setTipoDieta(''); setNombreD('')
                 setAlimentos(''); setInfoNutricional('')
                 setFoto(''); setHorario('')
+                document.querySelector('#tipoDieta-Añadir').value = '0'
                 document.querySelector('#nombre-dieta').value = ''
                 document.querySelector('#alimentos-dieta').value = ''
                 document.querySelector('#infoNutricional-dieta').value = ''
@@ -141,6 +111,10 @@ export const Administrador = () => {
             })
         }
     }
+
+    useEffect(() => {
+
+    }, [pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set, tipoDieta, nombreD, alimentos, infoNutricional, foto, horario])
 
     return (
         <div className="pt-5 contenedor pb-5" style={{ 'width': '100%' }}>
@@ -157,7 +131,7 @@ export const Administrador = () => {
                             <div className="tab-pane fade active show" id="nav-rutina" role="tabpanel" aria-labelledby="nav-rutina-tab">
                                 <AdminRutina
                                     funcion={guardarRutina}
-                                    funcionEditar={editar}
+                                    // funcionEditar={editarRutina}
                                     setPCuerpo={setPCuerpo}
                                     setMusculoObj={setMusculoObj}
                                     setNombre={setNombre}
@@ -176,13 +150,22 @@ export const Administrador = () => {
                                     errorRutina={errorRutina} />
                             </div>
                             <div className="tab-pane fade" id="nav-dieta" role="tabpanel" aria-labelledby="nav-dieta-tab">
-                                <AdminDieta funcion={guardarDieta}
+                                <AdminDieta
+                                    funcion={guardarDieta}
                                     setTipoDieta={setTipoDieta}
                                     setNombreD={setNombreD}
                                     setAlimentos={setAlimentos}
                                     setInfoNutricional={setInfoNutricional}
                                     setFoto={setFoto}
+                                    idDieta={idDieta}
+                                    tipoDieta={tipoDieta}
+                                    nombreD={nombreD}
+                                    alimentos={alimentos}
+                                    infoNutricional={infoNutricional}
+                                    foto={foto}
+                                    horario={horario}
                                     setHorario={setHorario}
+                                    setIdDieta={setIdDieta}
                                     errorDieta={errorDieta} />
                             </div>
                         </div>

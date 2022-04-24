@@ -5,10 +5,13 @@ import * as BsIcons from 'react-icons/bs'
 import { FormularioAgregarRutina } from './FormularioAgregarRutina'
 import axios from 'axios'
 
-export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
+export const FormularioBuscarRutina = ({ idRutina, setIdRutina, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
 
     const [first, setFirst] = useState(0)
     const [ejercicioUse, setEjercicioUse] = useState({})
+
+    const [busquedaSelect, setBusquedaSelect] = useState()
+    const [busquedaNombre, setBusquedaNombre] = useState()
 
 
     const urlRutina = process.env.REACT_APP_BACKEND_URL + `ejercicios/`
@@ -16,9 +19,10 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
     const [rutina, setRutina] = useState()
 
     const getRutina = (valor) => {
+        setBusquedaSelect(valor)
+        setBusquedaNombre(undefined)
 
-        let select = document.querySelector("#seleccionar")
-        select.removeAttribute("selected")
+        document.querySelector("#nombre-buscar-rutina").value = ""
 
         axios.get(urlRutina + `tipo/${valor}`)
             .then(response => {
@@ -30,11 +34,17 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
             })
     }
 
-    const getRutinaNombre = (e) => {
+    const botonGetRutinaNombre = (e) => {
         e.preventDefault()
-        let select = document.querySelector("#seleccionar")
-        select.setAttribute("selected", true)
-        document.getElementById('pCuerpo').selectedIndex = 0
+        getRutinaNombre()
+    }
+
+    const getRutinaNombre = () => {
+        // e.preventDefault()
+        document.querySelector('#select-pCuerpo').value = '0'
+
+        setBusquedaNombre(document.querySelector('#nombre-buscar-rutina').value)
+        setBusquedaSelect(undefined)
         let valor = document.querySelector("#nombre-buscar-rutina").value
         axios.get(urlRutina + `nombre/${valor}`)
             .then(response => {
@@ -44,8 +54,9 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
             .catch((err) => {
                 console.log(err)
             })
-        document.querySelector("#nombre-buscar-rutina").value = ""
+        // document.querySelector("#nombre-buscar-rutina").value = ""
     }
+
     const verEjercicio = (ejercicio) => {
         Swal.fire({
             title: "Ejercicio Seleccionado",
@@ -67,7 +78,8 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
             color: "#fafafa"
         })
     }
-    const editarEjercicio = (ejercicio) => {
+
+    const comenzarEditarEjercicio = (ejercicio) => {
         setIdRutina(ejercicio.id)
         document.querySelector('#contenido-form-editar').classList.remove('d-none')
         document.querySelector('#card-contenido-rutina').classList.add('d-none')
@@ -78,42 +90,102 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
         setDescripcion(ejercicio.descripcion)
         setRepeticiones(ejercicio.repeticiones)
         setSet(ejercicio.set)
+        document.querySelector('#tipoRutina-Editar').value = ejercicio.pCuerpo
 
         document.querySelector('#nav-agregar-tab').disabled = true
+    }
 
+    const editarRutina = (e) => {
+        e.preventDefault()
+        axios.put(urlRutina + `${idRutina}`, {
+            pCuerpo: pCuerpo,
+            nombre: nombre,
+            repeticiones: repeticiones,
+            video: video,
+            descripcion: descripcion,
+            musculoObj: musculoObj,
+            set: set
+        }).then((resp) => {
+            Swal.fire({
+                title: "Se ha modificado correctamente",
+                icon: "info",
+                color: "#fff"
+            })
+            if (busquedaSelect === undefined) {
+                // document.querySelector('#card-contenido-rutina').innerHTML = `<></>`
+                document.querySelector("#nombre-buscar-rutina").value = busquedaNombre
+                getRutinaNombre()
+            } else {
+                // document.querySelector('#card-contenido-rutina').innerHTML = ""
+                getRutina(busquedaSelect)
+            }
+            document.querySelector('#contenido-form-editar').classList.add('d-none')
+            document.querySelector('#card-contenido-rutina').classList.remove('d-none')
+            document.querySelector('#nav-agregar-tab').disabled = false
+            setPCuerpo(''); setMusculoObj('')
+            setNombre(''); setVideo(''); setDescripcion('')
+            setRepeticiones(''); setSet('')
+        }).catch((error) => {
+            Swal.fire({
+                title: "Ocurrió un error al modificar",
+                icon: "warning",
+                color: "#fff"
+            })
+        })
     }
 
     const eliminarEjercicio = (ejercicio) => {
-        console.log(ejercicio)
         Swal.fire({
             title: `¿Desea borrar el ejercicio: ${ejercicio.nombre}  ?`,
+            html: `<div class='text-white text-center'>Esto lo eliminara de los favoritos de los usuarios<div>`,
+            icon: 'warning',
             showCancelButton: true,
+            cancelButtonText: 'Cancelar',
             confirmButtonText: 'Ok',
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.delete(urlRutina + ejercicio.id)
-                    .then(Swal.fire('Eliminado!', '', 'warning'))
+                    .then(() => {
+                        if (busquedaSelect === undefined) {
+                            // document.querySelector('#card-contenido-rutina').innerHTML = `<></>`
+                            document.querySelector("#nombre-buscar-rutina").value = busquedaNombre
+                            getRutinaNombre()
+                        } else {
+                            // document.querySelector('#card-contenido-rutina').innerHTML = ""
+                            getRutina(busquedaSelect)
+                        }
+                        Swal.fire('Eliminado!', '', 'warning')
+                    })
                     .catch((e) => {
-                        Swal.fire('No se a eliminado', '', 'info')
+                        if (e.toJSON().status === 406) {
+                            Swal.fire('No se ha eliminado', '', 'info')
+                        } else {
+                            Swal.fire('Algo salió mal', '', 'info')
+                        }
+
                     })
             } else {
-                Swal.fire('No se a eliminado', '', 'info')
+                Swal.fire('No se ha eliminado', '', 'info')
             }
         })
     }
+
+    useEffect(() => {
+        // console.log('a')
+    }, [busquedaNombre, busquedaSelect])
 
     return (
         <div className="container-fluid">
             <form className="d-flex">
                 <input className="form-control me-2" id='nombre-buscar-rutina' type="search" placeholder="Busqueda" />
-                <button className="btn btn-outline-success" type="submit" onClick={getRutinaNombre}>Buscar</button>
+                <button className="btn btn-outline-success" type="submit" onClick={botonGetRutinaNombre}>Buscar</button>
             </form>
             <div className='row my-3'>
                 <div className="col-12 col-lg-4 text-end">
                     <label className="form-label me-5 pt-2">Ejercicio para</label>
                 </div>
                 <div className="col-12 col-lg">
-                    <select className="form-select boder-0" id='pCuerpo' onChange={(e) => { getRutina(e.target.value) }}>
+                    <select className="form-select boder-0" id='select-pCuerpo' onChange={(e) => { getRutina(e.target.value) }}>
                         <option id='seleccionar' value='0'>-- Seleccionar --</option>
                         <option value="Brazos">Brazos</option>
                         <option value="Pecho">Pecho</option>
@@ -144,7 +216,7 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
                                                 <div className="col-12 text-center mb-2">
                                                     <div>
                                                         <button onClick={() => verEjercicio(item)} className='btn btn-sm btn-success me-2'><FaIcons.FaEye></FaIcons.FaEye></button>
-                                                        <button onClick={() => editarEjercicio(item)} className='btn btn-sm btn-warning me-2'><AiIcons.AiFillEdit></AiIcons.AiFillEdit></button>
+                                                        <button onClick={() => comenzarEditarEjercicio(item)} className='btn btn-sm btn-warning me-2'><AiIcons.AiFillEdit></AiIcons.AiFillEdit></button>
                                                         <button onClick={() => eliminarEjercicio(item)} className='btn btn-sm btn-danger me-2'><BsIcons.BsFillTrashFill /></button>
                                                     </div>
                                                 </div>
@@ -169,7 +241,7 @@ export const FormularioBuscarRutina = ({ setIdRutina, funcionEditar, setPCuerpo,
             <div className='d-none' id='contenido-form-editar'>
                 <FormularioAgregarRutina
                     nombreForm="Editar"
-                    funcion={funcionEditar}
+                    funcion={editarRutina}
                     setPCuerpo={setPCuerpo}
                     setMusculoObj={setMusculoObj}
                     setNombre={setNombre}

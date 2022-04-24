@@ -2,7 +2,7 @@ import React from 'react'
 import { FormularioAgregarRutina } from './FormularioAgregarRutina'
 import { FormularioBuscarRutina } from './FormularioBuscarRutina'
 
-export const AdminRutina = ({ setIdRutina, funcionEditar, funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
+export const AdminRutina = ({ idRutina, setIdRutina, funcion, setPCuerpo, setMusculoObj, setNombre, setVideo, setDescripcion, setRepeticiones, setSet, errorRutina, pCuerpo, musculoObj, nombre, video, descripcion, repeticiones, set }) => {
 
     return (
         <div className="bg-opacity-25 pt-3">
@@ -34,10 +34,11 @@ export const AdminRutina = ({ setIdRutina, funcionEditar, funcion, setPCuerpo, s
                         <div className="tab-pane pe-3 fade" id="nav-editar" role="tabpanel" aria-labelledby="nav-editar-tab">
                             <FormularioBuscarRutina
                                 setIdRutina={setIdRutina}
-                                funcionEditar={funcionEditar}
+                                // funcionEditar={funcionEditar}
                                 setPCuerpo={setPCuerpo}
                                 setMusculoObj={setMusculoObj}
                                 setNombre={setNombre}
+                                idRutina={idRutina}
                                 pCuerpo={pCuerpo} musculoObj={musculoObj} nombre={nombre} video={video} descripcion={descripcion} repeticiones={repeticiones} set={set}
                                 setVideo={setVideo}
                                 setDescripcion={setDescripcion}

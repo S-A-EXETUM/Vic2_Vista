@@ -67,11 +67,11 @@ const Cuenta = () => {
         </div>
         <div className="col-4">
           {
-            adm != 'No admin' ?
-              (<button className='btn btn-light' onClick={adminRedirect}>Admin</button>)
+            adm == 'No admin' ?
+              (<></>)
               :
               (
-                <></>
+                <button className='btn btn-light' onClick={adminRedirect}>Admin</button>
               )
           }
 
@@ -114,7 +114,7 @@ const Cardsv = () => {
         })
     }
     getFavoritos()
-  }, [favorito])
+  }, [])
 
   const borrarFav = (id) => {
 
@@ -125,6 +125,11 @@ const Cardsv = () => {
           title: 'Favorito eliminado con éxito',
           icon: 'info'
         })
+        axios.get(url + `usuario/${idUser}`)
+          .then(response => {
+            const { data } = response
+            setFavorito(data)
+          })
       })
       .catch((error) => {
         console.log(error)
@@ -174,7 +179,7 @@ const Cardsv = () => {
             )
           })
           :
-          <h3 className='mt-2 text-center'>No a agregado favoritos</h3>
+          <h3 className='mt-2 text-center'>No ha agregado favoritos</h3>
         )
         :
         <div className='mt-2 text-center'>
